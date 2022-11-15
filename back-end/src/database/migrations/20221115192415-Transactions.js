@@ -4,7 +4,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(
-      'Users',
+      'Transactions',
       {
         id: {
           type: Sequelize.INTEGER,
@@ -12,22 +12,29 @@ module.exports = {
           autoIncrement: true,
           allowNull: false,
         },
-        username: {
-          type: Sequelize.STRING,
-          allowNull: false,
-          unique: true,
-        },
-        password: {
-          type: Sequelize.STRING,
-          allowNull: false,
-        },
-        accountId: {
+        debitedAccountId: {
           type: Sequelize.INTEGER,
           allowNull: false,
           foreignKey: true,
           references: { model: 'Accounts', key: 'id' },
           onUpdate: 'CASCADE',
           onDelete: 'CASCADE',
+        },
+        creditedAccountId: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          foreignKey: true,
+          references: { model: 'Accounts', key: 'id' },
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
+        },
+        value: {
+          type: Sequelize.DECIMAL(10, 2),
+          allowNull: false,
+        },
+        createdAt: {
+          type: Sequelize.DATE,
+          allowNull: false,
         },
       },
       {
@@ -37,6 +44,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('Transactions');
   },
 };
