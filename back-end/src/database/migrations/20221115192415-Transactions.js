@@ -29,16 +29,15 @@ module.exports = {
           onDelete: 'CASCADE',
         },
         value: {
-          type: Sequelize.DECIMAL(10, 2),
+          type: Sequelize.INTEGER,
           allowNull: false,
         },
         createdAt: {
           type: Sequelize.DATE,
-          allowNull: false,
         },
       },
       {
-        timestamps: false,
+        updatedAt: false,
       }
     );
   },
