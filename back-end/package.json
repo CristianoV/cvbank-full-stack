@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc --build",
+    "start": "tsc --build && node build/server.js",
     "dev": "tsx watch src/server.ts",
-    "db:drop": "cd src/database && npx sequelize-cli db:drop",
+    "db:reset": "cd src/database && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "build": "tsc --build",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "docker": "docker run -d --name Postgres-NG -p 5432:5432 -v /tmp/database:/var/lib/postgresql/data -e POSTGRES_PASSWORD=1234 postgres",
-    "db:reset": "cd src/database && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+    "db:drop": "cd src/database && npx sequelize-cli db:drop"
   },
   "keywords": [],
   "author": "",
