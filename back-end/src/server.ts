@@ -9,7 +9,7 @@ import Register from './Routes/Register.route';
 import Account from './Routes/Account.route';
 import Transaction from './Routes/Transaction.route';
 
-const port = process.env.API_PORT || 3000;
+const port = process.env.API_PORT || 3333;
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
