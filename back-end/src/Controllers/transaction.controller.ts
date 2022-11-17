@@ -25,4 +25,24 @@ export default class TransactionController {
 
     return res.status(200).json(transactions);
   }
+
+  public async getCreditedTransactions(req: Request, res: Response) {
+    const { authorization } = req.headers;
+
+    const transactions = await this.registerService.getCreditedTransactions(
+      authorization as string
+    );
+
+    return res.status(200).json(transactions);
+  }
+
+  public async getDebitedTransactions(req: Request, res: Response) {
+    const { authorization } = req.headers;
+
+    const transactions = await this.registerService.getDebitedTransactions(
+      authorization as string
+    );
+
+    return res.status(200).json(transactions);
+  }
 }

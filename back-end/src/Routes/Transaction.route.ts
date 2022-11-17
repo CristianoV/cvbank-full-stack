@@ -17,10 +17,24 @@ TransactionRoutes.post(
 );
 
 TransactionRoutes.get(
-  '/',
+  '/all',
   validate.checkUserExists,
   (request: Request, response: Response) =>
     transactionController.getTransactions(request, response)
+);
+
+TransactionRoutes.get(
+  '/credit',
+  validate.checkUserExists,
+  (request: Request, response: Response) =>
+    transactionController.getCreditedTransactions(request, response)
+);
+
+TransactionRoutes.get(
+  '/debit',
+  validate.checkUserExists,
+  (request: Request, response: Response) =>
+    transactionController.getDebitedTransactions(request, response)
 );
 
 export default TransactionRoutes;

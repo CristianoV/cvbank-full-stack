@@ -63,4 +63,30 @@ export default class TransactionService {
 
     return transactions;
   }
+
+  public async getCreditedTransactions(authorization: string) {
+    const { id } = JwtSecret.verify(authorization) as { id: number };
+
+    const transactions = await Transaction.findAll({
+      where: {
+        creditedAccountId: id,
+      },
+      raw: true,
+    });
+
+    return transactions;
+  }
+
+  public async getDebitedTransactions(authorization: string) {
+    const { id } = JwtSecret.verify(authorization) as { id: number };
+
+    const transactions = await Transaction.findAll({
+      where: {
+        debitedAccountId: id,
+      },
+      raw: true,
+    });
+
+    return transactions;
+  }
 }
