@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import dotenv = require('dotenv');
+import cors = require('cors');
 dotenv.config();
 
 import app from './app';
@@ -11,6 +12,8 @@ import Transaction from './Routes/Transaction.route';
 import NotFound from './Routes/NotFound';
 
 const port = process.env.API_PORT || 3333;
+
+app.use(cors());
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
