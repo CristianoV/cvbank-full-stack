@@ -2,14 +2,14 @@ module.exports = {
   up: async (queryInterface) => {
     await queryInterface.bulkInsert('Transactions', [
       {
-        debitedAccountId: 1,
-        creditedAccountId: 2,
+        debitedAccountId: 999,
+        creditedAccountId: 998,
         value: 100,
         createdAt: new Date(),
       },
       {
-        debitedAccountId: 2,
-        creditedAccountId: 1,
+        debitedAccountId: 998,
+        creditedAccountId: 999,
         value: 200,
         createdAt: new Date(),
       },
