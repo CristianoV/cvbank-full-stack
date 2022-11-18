@@ -58,7 +58,12 @@ export default class TransactionService {
       where: {
         [Op.or]: [{ creditedAccountId: id }, { debitedAccountId: id }],
       },
-      raw: true,
+      include: [
+        {
+          all: true,
+          attributes: ['username'],
+        },
+      ],
     });
 
     return transactions;
