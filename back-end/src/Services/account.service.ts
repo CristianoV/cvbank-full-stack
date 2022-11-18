@@ -13,7 +13,12 @@ export default class AccountService implements IAccountService {
       where: {
         id,
       },
-      raw: true,
+      include: [
+        {
+          all: true,
+          attributes: ['username'],
+        },
+      ],
     })) as unknown as IAccountData;
 
     return user;
