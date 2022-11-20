@@ -12,6 +12,18 @@ module.exports = {
         app: "url('/effects.png')",
       },
       colors: {
+        bank: {
+          primary: '#000000',
+          secondary: '#0a0a0a',
+          tertiary: '#111111',
+          quaternary: '#c5c5c5',
+          // success: '#ffffff',
+          // info: '#000000,',
+          // warning: '#ffffff',
+          // danger: '#DC143C',
+          // light: '#F0F8FF',
+          // dark: '#000000',
+        },
         ignite: {
           500: '#129E57'
         },
