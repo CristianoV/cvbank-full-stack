@@ -1,5 +1,5 @@
 export interface ITransactionData {
-  debitedAccountId: number;
-  creditedAccountId: number;
+  username: string;
   value: number;
+  authorization: string;
 }
