@@ -1,5 +1,5 @@
-import {  INTEGER, Model, DATE } from 'sequelize';
-import db from './index.js';
+import {  INTEGER, Model, DATEONLY } from 'sequelize';
+import db from '.';
 import User from './user.js';
 
 class Transaction extends Model {
@@ -36,7 +36,7 @@ Transaction.init({
     type: INTEGER
   },
   createdAt: {
-    type: DATE,
+    type: DATEONLY,
   },
 }, {
   sequelize: db,
