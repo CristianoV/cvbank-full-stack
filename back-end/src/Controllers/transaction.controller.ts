@@ -5,12 +5,13 @@ export default class TransactionController {
   constructor(private registerService: TransactionService) {}
 
   public async transaction(req: Request, res: Response) {
-    const { creditedAccountId, debitedAccountId, value } = req.body;
+    const { username, value } = req.body;
+    const { authorization } = req.headers as { authorization: string };
 
     const user = await this.registerService.transaction({
-      creditedAccountId,
-      debitedAccountId,
+      username,
       value,
+      authorization,
     });
 
     return res.status(201).json(user);
@@ -26,21 +27,34 @@ export default class TransactionController {
     return res.status(200).json(transactions);
   }
 
-  public async getCreditedTransactions(req: Request, res: Response) {
-    const { authorization } = req.headers;
+  // public async getCreditedTransactions(req: Request, res: Response) {
+  //   const { authorization } = req.headers;
 
-    const transactions = await this.registerService.getCreditedTransactions(
-      authorization as string
-    );
+  //   const transactions = await this.registerService.getCreditedTransactions(
+  //     authorization as string
+  //   );
 
-    return res.status(200).json(transactions);
-  }
+  //   return res.status(200).json(transactions);
+  // }
 
-  public async getDebitedTransactions(req: Request, res: Response) {
-    const { authorization } = req.headers;
+  // public async getDebitedTransactions(req: Request, res: Response) {
+  //   const { authorization } = req.headers;
 
-    const transactions = await this.registerService.getDebitedTransactions(
-      authorization as string
+  //   const transactions = await this.registerService.getDebitedTransactions(
+  //     authorization as string
+  //   );
+
+  //   return res.status(200).json(transactions);
+  // }
+
+  public async getTransactionsByDate(req: Request, res: Response) {
+    const { authorization } = req.headers as { authorization: string };
+    const { date, type } = req.body;
+
+    const transactions = await this.registerService.getTransactionsByDate(
+      authorization,
+      date,
+      type
     );
 
     return res.status(200).json(transactions);
