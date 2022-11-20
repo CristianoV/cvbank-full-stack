@@ -3,34 +3,33 @@ import Account from '../database/models/account';
 import JwtSecret from '../utils/JwtService';
 import { Op } from 'sequelize';
 import { ITransactionData } from '../Interfaces/IData/ITransactionData';
+import User from '../database/models/user';
 
 export default class TransactionService {
   public async transaction({
-    creditedAccountId,
-    debitedAccountId,
+    username,
+    authorization,
     value,
   }: ITransactionData) {
-    const { balance: balanceDebitedAccountId } = (await Account.findOne({
-      where: { id: debitedAccountId },
-      raw: true,
-    })) as { balance: number };
+    const { id } = JwtSecret.verify(authorization) as { id: number };
 
-    const { balance: balanceCreditedAccountId } = (await Account.findOne({
-      where: { id: creditedAccountId },
-      raw: true,
-    })) as { balance: number };
+    const { balance: balanceCreditedAccountId, id: creditedAccountId } =
+      (await Account.findOne({
+        include: [
+          {
+            model: User,
+            as: 'user',
+            where: { username },
+          },
+        ],
+        raw: true,
+      })) as { balance: number; id: number };
 
-    if (balanceDebitedAccountId < value) {
-      throw new Error('Insufficient funds');
-    }
-
-    if (creditedAccountId === debitedAccountId) {
-      throw new Error('You cannot transfer to yourself');
-    }
-
-    if (value <= 0) {
-      throw new Error('You cannot transfer a negative value');
-    }
+    const { balance: balanceDebitedAccountId, id: debitedAccountId } =
+      (await Account.findOne({
+        where: { id },
+        raw: true,
+      })) as { balance: number; id: number };
 
     const transaction = await Transaction.create({
       creditedAccountId,
@@ -69,29 +68,70 @@ export default class TransactionService {
     return transactions;
   }
 
-  public async getCreditedTransactions(authorization: string) {
+  public async getTransactionsByDate(
+    authorization: string,
+    date: string,
+    type: string
+  ) {
     const { id } = JwtSecret.verify(authorization) as { id: number };
 
+    console.log(new Date(date));
+    
+    
+    
+    
+    
     const transactions = await Transaction.findAll({
       where: {
-        creditedAccountId: id,
+        [Op.or]: [{ creditedAccountId: id }, { debitedAccountId: id }],
+        createdAt: date,
       },
-      raw: true,
+      include: [
+        {
+          all: true,
+          attributes: ['username'],
+        },
+      ],
     });
+
+    if (type === 'credit') {
+      return transactions.filter(
+        (transaction) => transaction.creditedAccountId === id
+      );
+    }
+
+    if (type === 'debit') {
+      return transactions.filter(
+        (transaction) => transaction.debitedAccountId === id
+      );
+    }
 
     return transactions;
   }
 
-  public async getDebitedTransactions(authorization: string) {
-    const { id } = JwtSecret.verify(authorization) as { id: number };
+  // public async getCreditedTransactions(authorization: string) {
+  //   const { id } = JwtSecret.verify(authorization) as { id: number };
 
-    const transactions = await Transaction.findAll({
-      where: {
-        debitedAccountId: id,
-      },
-      raw: true,
-    });
+  //   const transactions = await Transaction.findAll({
+  //     where: {
+  //       creditedAccountId: id,
+  //     },
+  //     raw: true,
+  //   });
 
-    return transactions;
-  }
+  //   return transactions;
+  // }
+
+  // public async getDebitedTransactions(authorization: string) {
+  //   const { id } = JwtSecret.verify(authorization) as { id: number };
+
+  //   const transactions = await Transaction.findAll({
+  //     where: {
+  //       debitedAccountId: id,
+  //     },
+  //     raw: true,
+  //   });
+
+  //   return transactions;
+  // }
 }
