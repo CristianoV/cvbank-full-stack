@@ -12,6 +12,7 @@ const validate = new Validate();
 TransactionRoutes.post(
   '/',
   validate.checkUserExists,
+  validate.ckeckTransaction,
   (request: Request, response: Response) =>
     transactionController.transaction(request, response)
 );
@@ -23,18 +24,25 @@ TransactionRoutes.get(
     transactionController.getTransactions(request, response)
 );
 
-TransactionRoutes.get(
-  '/credit',
+TransactionRoutes.post(
+  '/date',
   validate.checkUserExists,
   (request: Request, response: Response) =>
-    transactionController.getCreditedTransactions(request, response)
+    transactionController.getTransactionsByDate(request, response)
 );
 
-TransactionRoutes.get(
-  '/debit',
-  validate.checkUserExists,
-  (request: Request, response: Response) =>
-    transactionController.getDebitedTransactions(request, response)
-);
+// TransactionRoutes.get(
+//   '/credit',
+//   validate.checkUserExists,
+//   (request: Request, response: Response) =>
+//     transactionController.getCreditedTransactions(request, response)
+// );
+
+// TransactionRoutes.get(
+//   '/debit',
+//   validate.checkUserExists,
+//   (request: Request, response: Response) =>
+//     transactionController.getDebitedTransactions(request, response)
+// );
 
 export default TransactionRoutes;
