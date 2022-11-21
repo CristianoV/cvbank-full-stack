@@ -10,15 +10,15 @@ module.exports = {
           createdAt: '2022-01-01T23:21:03.639Z',
         },
         {
-          debitedAccountId: 998,
-          creditedAccountId: 999,
-          value: 1000000000,
+          debitedAccountId: 999,
+          creditedAccountId: 998,
+          value: 770000000,
           createdAt: '2022-01-01T23:21:03.639Z',
         },
         {
           debitedAccountId: 998,
           creditedAccountId: 999,
-          value: 100,
+          value: 1000000000,
           createdAt: '2022-01-01T23:21:03.639Z',
         },
         {
