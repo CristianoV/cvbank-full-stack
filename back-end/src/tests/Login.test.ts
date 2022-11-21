@@ -25,16 +25,6 @@ describe('Testando rotas', () => {
     after(() => {
       Sinon.restore();
     });
-    it('Testando login com tudo correto', async () => {
-      const response = await chai
-        .request('http://localhost:3333')
-        .post('/login')
-        .send(login);
-
-      chai.expect(response.status).to.be.equal(200);
-      chai.expect(response.status).to.equal(200);
-      chai.expect(response.body).to.be.key('token');
-    });
     it('Testando login com usuario errado', async () => {
       const response = await chai
         .request('http://localhost:3333')
@@ -96,6 +86,16 @@ describe('Testando rotas', () => {
       chai.expect(response.body).to.be.deep.equal({
         error: 'model must be alphanumeric',
       });
+    });
+    it('Testando login com tudo correto', async () => {
+      const response = await chai
+        .request('http://localhost:3333')
+        .post('/login')
+        .send(login);
+
+      chai.expect(response.status).to.be.equal(200);
+      chai.expect(response.status).to.equal(200);
+      chai.expect(response.body).to.be.key('token');
     });
   });
 });
