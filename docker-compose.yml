@@ -22,6 +22,9 @@ services:
       - 3333:3333
     platform: linux/x86_64
     working_dir: /app-backend
+    depends_on:
+      db:
+        condition: service_healthy
     environment:
       - APP_PORT=3001
       - JWT_SECRET=jwt_secret
@@ -45,8 +48,8 @@ services:
       - POSTGRES_PASSWORD=1234
     restart: 'always'
     healthcheck:
-      test: ["CMD", "postgresadmin" ,"ping", "-h", "localhost"] # Deve aguardar o banco ficar operacional
-      timeout: 10s
+      test: ["CMD-SHELL", "pg_isready"]
+      timeout: 5s
       retries: 5
     cap_add:
       - SYS_NICE # Deve omitir alertas menores
