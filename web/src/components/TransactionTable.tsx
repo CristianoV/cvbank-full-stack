@@ -46,7 +46,7 @@ export default function TransactionTable() {
     const token = localStorage.getItem('token');
     if (token) {
       const response = await fetchFromApi.post(
-        '/transaction/date',
+        '/transaction/filter',
         { date, type: filter },
         {
           headers: {
@@ -55,7 +55,6 @@ export default function TransactionTable() {
         }
       );
       const { data } = response;
-      console.log(data);
 
       setState({ ...state, transactions: data });
       setLoading(false);
