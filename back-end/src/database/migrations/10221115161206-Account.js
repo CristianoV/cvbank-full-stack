@@ -12,7 +12,7 @@ module.exports = {
           allowNull: false,
         },
         balance: {
-          type: Sequelize.INTEGER,
+          type: Sequelize.BIGINT,
           allowNull: false,
         },
       },
