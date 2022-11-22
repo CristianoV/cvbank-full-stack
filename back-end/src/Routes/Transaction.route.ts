@@ -14,7 +14,7 @@ TransactionRoutes.post(
   validate.checkUserExists,
   validate.ckeckTransaction,
   (request: Request, response: Response) =>
-    transactionController.transaction(request, response)
+    transactionController.getTransactions(request, response)
 );
 
 TransactionRoutes.get(
@@ -25,24 +25,10 @@ TransactionRoutes.get(
 );
 
 TransactionRoutes.post(
-  '/date',
+  '/filter',
   validate.checkUserExists,
   (request: Request, response: Response) =>
-    transactionController.getTransactionsByDate(request, response)
+    transactionController.getTransactionsByFilter(request, response)
 );
-
-// TransactionRoutes.get(
-//   '/credit',
-//   validate.checkUserExists,
-//   (request: Request, response: Response) =>
-//     transactionController.getCreditedTransactions(request, response)
-// );
-
-// TransactionRoutes.get(
-//   '/debit',
-//   validate.checkUserExists,
-//   (request: Request, response: Response) =>
-//     transactionController.getDebitedTransactions(request, response)
-// );
 
 export default TransactionRoutes;
