@@ -47,8 +47,8 @@ describe('Testando rota de Registro', () => {
         .post('/register')
         .send(smallUserName);
 
-      // chai.expect(response.status).to.be.equal(403);
-      // chai.expect(response.status).to.equal(403);
+      chai.expect(response.status).to.be.equal(400);
+      chai.expect(response.status).to.equal(400);
       chai.expect(response.body).to.be.key('error');
       chai.expect(response.body).to.be.deep.equal({
         error: 'model must be 3 or more characters long',
@@ -61,8 +61,8 @@ describe('Testando rota de Registro', () => {
         .post('/register')
         .send(smallPassword);
 
-      // chai.expect(response.status).to.be.equal(403);
-      // chai.expect(response.status).to.equal(403);
+      chai.expect(response.status).to.be.equal(400);
+      chai.expect(response.status).to.equal(400);
       chai.expect(response.body).to.be.key('error');
       chai.expect(response.body).to.be.deep.equal({
         error: 'String must contain at least 8 character(s)',
@@ -75,8 +75,8 @@ describe('Testando rota de Registro', () => {
         .post('/register')
         .send(alphaNumericPassword);
 
-      // chai.expect(response.status).to.be.equal(403);
-      // chai.expect(response.status).to.equal(403);
+      chai.expect(response.status).to.be.equal(400);
+      chai.expect(response.status).to.equal(400);
       chai.expect(response.body).to.be.key('error');
       chai.expect(response.body).to.be.deep.equal({
         error: 'model must be alphanumeric',

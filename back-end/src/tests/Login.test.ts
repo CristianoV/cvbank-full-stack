@@ -24,15 +24,15 @@ describe('Testando rota de Login', () => {
     afterEach(() => {
       Sinon.restore();
     });
-  it('Testando login com tudo correto', async () => {
-    Sinon.stub(User, 'findOne').resolves(user as any);
-    const response = await chai.request(app).post('/login').send(login);
+    it('Testando login com tudo correto', async () => {
+      Sinon.stub(User, 'findOne').resolves(user as User);
+      const response = await chai.request(app).post('/login').send(login);
 
-    chai.expect(response.status).to.be.equal(200);
-    chai.expect(response.status).to.equal(200);
-    chai.expect(response.body).to.be.key('token');
+      chai.expect(response.status).to.be.equal(202);
+      chai.expect(response.status).to.equal(202);
+      chai.expect(response.body).to.be.key('token');
+    });
   });
-});
   describe('Falha', () => {
     afterEach(() => {
       Sinon.restore();
@@ -44,6 +44,8 @@ describe('Testando rota de Login', () => {
         .post('/login')
         .send(usernameWrong);
 
+      chai.expect(response.status).to.be.equal(400);
+      chai.expect(response.status).to.equal(400);
       chai.expect(response.body).to.be.deep.equal({
         error: 'User not found',
       });
@@ -55,8 +57,8 @@ describe('Testando rota de Login', () => {
         .post('/login')
         .send(passwordWrong);
 
-      // chai.expect(response.status).to.be.equal(403);
-      // chai.expect(response.status).to.equal(403);
+      chai.expect(response.status).to.be.equal(400);
+      chai.expect(response.status).to.equal(400);
       chai.expect(response.body).to.be.key('error');
       chai.expect(response.body).to.be.deep.equal({
         error: 'Incorrect email or password',
@@ -68,8 +70,8 @@ describe('Testando rota de Login', () => {
         .post('/login')
         .send(smallUserName);
 
-      // chai.expect(response.status).to.be.equal(403);
-      // chai.expect(response.status).to.equal(403);
+      chai.expect(response.status).to.be.equal(400);
+      chai.expect(response.status).to.equal(400);
       chai.expect(response.body).to.be.key('error');
       chai.expect(response.body).to.be.deep.equal({
         error: 'model must be 3 or more characters long',
@@ -81,8 +83,8 @@ describe('Testando rota de Login', () => {
         .post('/login')
         .send(smallPassword);
 
-      // chai.expect(response.status).to.be.equal(403);
-      // chai.expect(response.status).to.equal(403);
+      chai.expect(response.status).to.be.equal(400);
+      chai.expect(response.status).to.equal(400);
       chai.expect(response.body).to.be.key('error');
       chai.expect(response.body).to.be.deep.equal({
         error: 'String must contain at least 8 character(s)',
@@ -94,8 +96,8 @@ describe('Testando rota de Login', () => {
         .post('/login')
         .send(alphaNumericPassword);
 
-      // chai.expect(response.status).to.be.equal(403);
-      // chai.expect(response.status).to.equal(403);
+      chai.expect(response.status).to.be.equal(400);
+      chai.expect(response.status).to.equal(400);
       chai.expect(response.body).to.be.key('error');
       chai.expect(response.body).to.be.deep.equal({
         error: 'model must be alphanumeric',
