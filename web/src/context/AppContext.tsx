@@ -1,8 +1,9 @@
 import { createContext, useContext, useState } from 'react';
+import { IAppContextProps } from '../interfaces/IProps/IAppContextProps';
 
 const AppContext = createContext([{}, () => {}]);
 
-export function AppWrapper({ children }) {
+export function AppWrapper({ children }: IAppContextProps) {
   const [state, setState] = useState({
     token: '',
     username: '',
