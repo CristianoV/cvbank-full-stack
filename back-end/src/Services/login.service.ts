@@ -31,12 +31,12 @@ export default class LoginService implements ILoginService {
     });
 
     if (!user) {
-      throw new Error('User not found');
+      return { error: 'User not found' };
     }
 
     const verifyPassword = Bcrypt.compare(user.password, password);
 
-    if (!verifyPassword) throw new Error('Incorrect email or password');
+    if (!verifyPassword) return { error: 'Incorrect email or password' };
 
     const token = JwtSecret.sign({ id: user.id, username: user.username });
 
