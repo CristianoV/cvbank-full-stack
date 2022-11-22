@@ -17,10 +17,9 @@ export default class LoginService implements ILoginService {
 
     if (!parsed.success) {
       const { message } = parsed.error;
-      const teste = JSON.parse(message);
-      const x = teste[0].message;
+      const customMessage = JSON.parse(message);
 
-      return { error: x };
+      throw new Error(customMessage[0].message);
     }
 
     const user = await this.model.findOne({
@@ -31,12 +30,12 @@ export default class LoginService implements ILoginService {
     });
 
     if (!user) {
-      return { error: 'User not found' };
+      throw new Error('User not found');
     }
 
     const verifyPassword = Bcrypt.compare(user.password, password);
 
-    if (!verifyPassword) return { error: 'Incorrect email or password' };
+    if (!verifyPassword) throw new Error('Incorrect email or password');
 
     const token = JwtSecret.sign({ id: user.id, username: user.username });
 

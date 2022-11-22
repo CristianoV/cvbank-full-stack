@@ -37,11 +37,9 @@ export default class RegisterService implements IRegisterService {
 
     if (!parsed.success) {
       const { message } = parsed.error;
+      const customMessage = JSON.parse(message);
 
-      const teste = JSON.parse(message);
-      const x = teste[0].message;
-
-      return { error: x };
+      throw new Error(customMessage[0].message);
     }
 
     const { id: accountId } = await this.registerAccount({ balance: 10000 });

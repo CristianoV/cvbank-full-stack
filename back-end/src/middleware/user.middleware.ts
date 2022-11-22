@@ -12,7 +12,7 @@ export default class UserMiddleware {
     });
 
     if (user) {
-      return res.status(400).json({ error: 'User already exists' });
+      throw new Error('User already exists');
     }
 
     return next();
