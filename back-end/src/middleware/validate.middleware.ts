@@ -60,15 +60,15 @@ export default class UserMiddleware {
       })) as { balance: number; id: number };
 
     if (balance < value) {
-      throw new Error('Insufficient funds');
+      return res.status(412).json({ error: 'Insufficient funds' });
     }
 
     if (creditedAccountId === debitedAccountId) {
-      throw new Error('You cannot transfer to yourself');
+      return res.status(412).json({ error: 'You cannot transfer to yourself' });
     }
 
     if (value <= 0) {
-      throw new Error('You cannot transfer a negative value');
+      return res.status(412).json({ error: 'You cannot transfer a negative value' });
     }
 
     return next();
