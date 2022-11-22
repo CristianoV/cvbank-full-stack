@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import AccountService from "../Services/account.service";
+import { IAccountController } from "../Interfaces/IController/IAccountController";
 
-export default class AccountController {
+export default class AccountController implements IAccountController {
   constructor(private registerService: AccountService) {}
 
   public async Account(req: Request, res: Response) {

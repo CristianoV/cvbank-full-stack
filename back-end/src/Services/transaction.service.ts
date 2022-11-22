@@ -4,9 +4,11 @@ import JwtSecret from '../utils/JwtService';
 import { Op } from 'sequelize';
 import { ITransactionData } from '../Interfaces/IData/ITransactionData';
 import User from '../database/models/user';
+import { ITransactionService } from '../Interfaces/IService/ITransactionService';
+import { IFilterData } from '../Interfaces/IData/IFilterData';
 
-export default class TransactionService {
-  public async transaction({
+export default class TransactionService implements ITransactionService {
+  public async newTransaction({
     username,
     authorization,
     value,
@@ -68,19 +70,13 @@ export default class TransactionService {
     return transactions;
   }
 
-  public async getTransactionsByDate(
-    authorization: string,
-    date: string,
-    type: string
-  ) {
+  public async getTransactionsByFilter({
+    authorization,
+    date,
+    type,
+  }: IFilterData) {
     const { id } = JwtSecret.verify(authorization) as { id: number };
 
-    console.log(new Date(date));
-    
-    
-    
-    
-    
     const transactions = await Transaction.findAll({
       where: {
         [Op.or]: [{ creditedAccountId: id }, { debitedAccountId: id }],
@@ -108,30 +104,4 @@ export default class TransactionService {
 
     return transactions;
   }
-
-  // public async getCreditedTransactions(authorization: string) {
-  //   const { id } = JwtSecret.verify(authorization) as { id: number };
-
-  //   const transactions = await Transaction.findAll({
-  //     where: {
-  //       creditedAccountId: id,
-  //     },
-  //     raw: true,
-  //   });
-
-  //   return transactions;
-  // }
-
-  // public async getDebitedTransactions(authorization: string) {
-  //   const { id } = JwtSecret.verify(authorization) as { id: number };
-
-  //   const transactions = await Transaction.findAll({
-  //     where: {
-  //       debitedAccountId: id,
-  //     },
-  //     raw: true,
-  //   });
-
-  //   return transactions;
-  // }
 }

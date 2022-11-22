@@ -1,14 +1,15 @@
 import { Request, Response } from 'express';
 import TransactionService from '../Services/transaction.service';
+import { ITransactionController } from '../Interfaces/IController/ITransactionController';
 
-export default class TransactionController {
+export default class TransactionController implements ITransactionController {
   constructor(private registerService: TransactionService) {}
 
-  public async transaction(req: Request, res: Response) {
+  public async createTransaction(req: Request, res: Response) {
     const { username, value } = req.body;
     const { authorization } = req.headers as { authorization: string };
 
-    const user = await this.registerService.transaction({
+    const user = await this.registerService.newTransaction({
       username,
       value,
       authorization,
@@ -27,35 +28,15 @@ export default class TransactionController {
     return res.status(200).json(transactions);
   }
 
-  // public async getCreditedTransactions(req: Request, res: Response) {
-  //   const { authorization } = req.headers;
-
-  //   const transactions = await this.registerService.getCreditedTransactions(
-  //     authorization as string
-  //   );
-
-  //   return res.status(200).json(transactions);
-  // }
-
-  // public async getDebitedTransactions(req: Request, res: Response) {
-  //   const { authorization } = req.headers;
-
-  //   const transactions = await this.registerService.getDebitedTransactions(
-  //     authorization as string
-  //   );
-
-  //   return res.status(200).json(transactions);
-  // }
-
-  public async getTransactionsByDate(req: Request, res: Response) {
+  public async getTransactionsByFilter(req: Request, res: Response) {
     const { authorization } = req.headers as { authorization: string };
     const { date, type } = req.body;
 
-    const transactions = await this.registerService.getTransactionsByDate(
+    const transactions = await this.registerService.getTransactionsByFilter({
       authorization,
       date,
-      type
-    );
+      type,
+    });
 
     return res.status(200).json(transactions);
   }
