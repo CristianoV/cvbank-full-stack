@@ -1,7 +1,7 @@
-import { IToken } from "../IToken";
-import { IError } from "../IError";
-import { ILoginData } from "../IData/ILoginData";
+import { IToken } from '../IToken';
+import { IError } from '../IError';
+import { ILoginData } from '../IData/ILoginData';
 
 export interface ILoginService {
-  login: (data: ILoginData) => Promise<IToken | IError>;
+  login({ password, username }: ILoginData): Promise<IToken | IError>;
 }
