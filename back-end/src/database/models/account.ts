@@ -1,4 +1,4 @@
-import {  INTEGER, Model } from 'sequelize';
+import {  BIGINT, INTEGER, Model } from 'sequelize';
 import db from '.';
 import User from './user';
 
@@ -16,7 +16,7 @@ Account.init({
     references: { model: 'Users', key: 'accountId' },
   },
   balance: {
-    type: INTEGER
+    type: BIGINT
   },
 }, {
   sequelize: db,
