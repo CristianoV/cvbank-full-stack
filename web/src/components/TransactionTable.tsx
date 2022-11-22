@@ -4,7 +4,8 @@ import { useAppContext } from '../context/AppContext';
 import { fetchFromApi } from '../lib/axios';
 import TransactionCells from '../components/TransactionCells';
 import Loading from './Loading';
-import { IContext, ITransaction } from '../interfaces/IData/IContext';
+import { IContext } from '../interfaces/IData/IContext';
+import { ITransaction } from '../interfaces/IData/ITransaction';
 
 export default function TransactionTable() {
   const [state, setState] = useAppContext() as unknown as [IContext,
