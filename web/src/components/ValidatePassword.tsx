@@ -1,4 +1,6 @@
-export default function ValidatePassword({ password }) {
+import { IValidatePasswordProps } from '../interfaces/IProps/IValidatePasswordProps';
+
+export default function ValidatePassword({ password }: IValidatePasswordProps) {
   return (
     <div className='text-xs flex gap-2'>
       <h1 className={password.length > 8 ? 'text-green-700' : 'text-black'}>
