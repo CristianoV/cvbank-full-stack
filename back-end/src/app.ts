@@ -26,7 +26,7 @@ class App {
     this.app.use('/transaction', Transaction);
     this.app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
       if (err) {
-        return res.status(403).json({ error: err.message });
+        return res.status(400).json({ error: err.message });
       }
       next();
     });
