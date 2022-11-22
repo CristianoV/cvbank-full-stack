@@ -4,11 +4,14 @@ import { fetchFromApi } from '../lib/axios';
 import { useAppContext } from '../context/AppContext';
 import ValidatePassword from '../components/ValidatePassword';
 import ValidateUsername from '../components/ValidateUsername';
+import { IContext } from '../interfaces/IData/IContext';
 
 export default function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [state, setState] = useAppContext() as any;
+  const [state, setState] = useAppContext() as unknown as [IContext,
+    (state: IContext) => void];
+
   const [seePassword, setSeePassword] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
@@ -38,7 +41,7 @@ export default function Register() {
       setError(data.error);
       setPassword('');
       setUsername('');
-    } catch (error) {
+    } catch (error: any) {
       const { data } = error.response;
 
       setError(data.error);
