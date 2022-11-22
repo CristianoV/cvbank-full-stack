@@ -1,12 +1,15 @@
 import { useRouter } from 'next/router';
-import { useEffect, useMemo, useState } from 'react';
+import { Key, useEffect, useState } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { fetchFromApi } from '../lib/axios';
 import TransactionCells from '../components/TransactionCells';
 import Loading from './Loading';
+import { IContext, ITransaction } from '../interfaces/IData/IContext';
 
 export default function TransactionTable() {
-  const [state, setState] = useAppContext() as any;
+  const [state, setState] = useAppContext() as unknown as [IContext,
+    (state: IContext) => void];
+
   const [loading, setLoading] = useState(true);
   const [date, setDate] = useState('');
   const [filter, setFilter] = useState('');
@@ -41,7 +44,7 @@ export default function TransactionTable() {
     };
   }, []);
 
-  const filteredTransactions = async (e) => {
+  const filteredTransactions = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     if (token) {
@@ -121,15 +124,15 @@ export default function TransactionTable() {
           {!loading &&
             state.transactions.map(
               (
-                { createdAt, value, id, creditedUser, debitedUser }: any,
-                index
+                { createdAt, value, id, creditedUser, debitedUser }: ITransaction,
+                index: Key
               ) => {
                 return (
                   <TransactionCells
                     createdAt={createdAt}
                     value={value}
-                    creditedAccountId={creditedUser}
-                    debitedAccountId={debitedUser}
+                    creditedUser={creditedUser}
+                    debitedUser={debitedUser}
                     id={id}
                     key={index}
                   />
