@@ -1,10 +1,22 @@
+export const newAccount = {
+  id: 1,
+  balance: 10000,
+}
+
+export const newUsser = {
+  id: 999,
+  username: 'Riquinho',
+  password: '',
+  accountId: 1,
+}
+
 export const register = {
-  username: 'AntonioS',
+  username: 'Riquinho',
   password: 'Abacaxi123',
 };
 
 export const passwordWrong = {
-  username: 'AntonioS',
+  username: 'Riquinho',
   password: 'Wr0ngPassword',
 };
 
@@ -14,11 +26,11 @@ export const smallUserName = {
 };
 
 export const smallPassword = {
-  username: 'AntonioS',
+  username: 'Riquinho',
   password: 'Ab',
 };
 
 export const alphaNumericPassword = {
-  username: 'AntonioS',
+  username: 'Riquinho',
   password: 'abacaxi123',
 };
