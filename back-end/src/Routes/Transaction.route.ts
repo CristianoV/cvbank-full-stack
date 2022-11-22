@@ -14,7 +14,7 @@ TransactionRoutes.post(
   validate.checkUserExists,
   validate.ckeckTransaction,
   (request: Request, response: Response) =>
-    transactionController.getTransactions(request, response)
+    transactionController.createTransaction(request, response)
 );
 
 TransactionRoutes.get(
