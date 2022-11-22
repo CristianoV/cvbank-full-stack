@@ -1,37 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
-import 'express-async-errors';
-import dotenv = require('dotenv');
-import cors = require('cors');
-dotenv.config();
+import { App } from './app';
+import 'dotenv/config';
 
-import app from './app';
-import Login from './Routes/Login.route';
-import Register from './Routes/Register.route';
-import Account from './Routes/Account.route';
-import Transaction from './Routes/Transaction.route';
-import NotFound from './Routes/NotFound';
+const PORT = process.env.APP_PORT || 3333;
 
-const port = process.env.API_PORT || 3333;
-
-app.use(cors());
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
-
-app.use('/login', Login);
-app.use('/register', Register);
-app.use('/account', Account);
-app.use('/transaction', Transaction);
-app.use(NotFound)
-
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  if (err) {
-    console.log(err);
-
-    return res.status(403).json({ error: err.message });
-  }
-  next();
-});
-
-app.listen(port, () => console.log('ouvindo porta', port));
+new App().start(PORT);
