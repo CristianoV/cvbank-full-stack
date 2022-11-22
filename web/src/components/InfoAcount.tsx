@@ -72,8 +72,6 @@ export default function InfoAcount() {
     }
   }, [router, state, setState]);
 
-  console.log('infoAcount');
-
   return (
     <div
       className='bg-bank-primary text-bank-quaternary flex justify-between items-center h-16 w-full

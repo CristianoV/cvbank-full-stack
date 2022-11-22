@@ -60,8 +60,6 @@ export default function NewTransaction() {
     [usuario]
   );
 
-  console.log('newTransaction');
-
   return (
     <div className='pt-16'>
       <form

@@ -35,8 +35,6 @@ export default function Register() {
         router.push('/account');
       }
 
-      console.log(data.error);
-
       setError(data.error);
       setPassword('');
       setUsername('');
