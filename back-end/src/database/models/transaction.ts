@@ -1,6 +1,6 @@
 import {  INTEGER, Model, DATEONLY } from 'sequelize';
 import db from '.';
-import User from './user.js';
+import User from './user';
 
 class Transaction extends Model {
   public id!: number;
