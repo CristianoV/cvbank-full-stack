@@ -9,13 +9,10 @@
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "build": "tsc --build",
     "test": "mocha -r ts-node/register ./src/tests/*.test.ts -t 10000 --exit",
-    "testProblems": "mocha -r ts-node/register src/tests/problems/*.test.ts",
     "docker": "docker run -d --name Postgres-NG -p 5432:5432 -v /tmp/database:/var/lib/postgresql/data -e POSTGRES_PASSWORD=1234 postgres",
     "db:drop": "cd src/database && npx sequelize-cli db:drop",
     "predev": "npm run build && npm run db:reset",
-    "prestart": "npm run build && npm run db:reset",
-    "x1": "tsx watch ./src/yserver.ts",
-    "prex1": "npm run build && npm run db:reset"
+    "prestart": "npm run build && npm run db:reset"
   },
   "keywords": [],
   "author": "",
