@@ -10,6 +10,6 @@ export default class AccountController implements IAccountController {
 
     const user = await this.registerService.account(authorization);
 
-    return res.status(200).json(user);
+    return res.status(202).json(user);
   }
 }

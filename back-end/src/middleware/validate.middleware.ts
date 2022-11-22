@@ -24,7 +24,7 @@ export default class UserMiddleware {
     });
 
     if (!user) {
-      return res.status(400).json({ message: 'User not authorized' });
+      return res.status(401).json({ message: 'User not authorized' });
     }
 
     return next();
@@ -60,15 +60,15 @@ export default class UserMiddleware {
       })) as { balance: number; id: number };
 
     if (balance < value) {
-      return res.status(412).json({ error: 'Insufficient funds' });
+      throw new Error('Insufficient funds');
     }
 
     if (creditedAccountId === debitedAccountId) {
-      return res.status(412).json({ error: 'You cannot transfer to yourself' });
+      throw new Error('You cannot transfer to yourself');
     }
 
     if (value <= 0) {
-      return res.status(412).json({ error: 'You cannot transfer a negative value' });
+      throw new Error('You cannot transfer a negative value');
     }
 
     return next();

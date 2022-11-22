@@ -10,6 +10,6 @@ export default class LoginController implements ILoginController {
 
     const user = await this.registerService.login({ username, password });
 
-    return res.status(200).json(user);
+    return res.status(202).json(user);
   }
 }

@@ -25,7 +25,7 @@ export default class TransactionController implements ITransactionController {
       authorization as string
     );
 
-    return res.status(200).json(transactions);
+    return res.status(202).json(transactions);
   }
 
   public async getTransactionsByFilter(req: Request, res: Response) {
@@ -38,6 +38,6 @@ export default class TransactionController implements ITransactionController {
       type,
     });
 
-    return res.status(200).json(transactions);
+    return res.status(202).json(transactions);
   }
 }
