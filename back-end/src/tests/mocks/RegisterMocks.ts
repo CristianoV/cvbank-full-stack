@@ -4,15 +4,15 @@ export const newAccount = {
 }
 
 export const newUsser = {
-  id: 999,
+  id: 1,
   username: 'Riquinho',
-  password: '',
+  password: 'SenhaBemSegura123',
   accountId: 1,
 }
 
 export const register = {
   username: 'Riquinho',
-  password: 'Abacaxi123',
+  password: 'SenhaBemSegura123',
 };
 
 export const passwordWrong = {
@@ -22,15 +22,15 @@ export const passwordWrong = {
 
 export const smallUserName = {
   username: 'Ci',
-  password: 'Abacaxi123',
+  password: 'SenhaBemSegura123',
 };
 
 export const smallPassword = {
   username: 'Riquinho',
-  password: 'Ab',
+  password: 'Se',
 };
 
 export const alphaNumericPassword = {
   username: 'Riquinho',
-  password: 'abacaxi123',
+  password: 'senha_sem_validacao',
 };
