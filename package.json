@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "docker-compose up -d --build",
+    "compose:up": "docker-compose up -d --build",
+    "compose:down": "docker-compose down --remove-orphans",
+    "ambiente": "cd web && npm i",
+    "preambiente": "cd back-end && npm i",
     "test-back": "cd back-end && npm run test"
   },
   "repository": {
