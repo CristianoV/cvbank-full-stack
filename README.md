@@ -4,8 +4,6 @@ Projeto NG-Cash FullStack
 
 ## :books: Contexto
 
-
-
 # Instruções da aplicação
 ### Instalar dependências
 ```
