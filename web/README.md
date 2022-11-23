@@ -2,7 +2,7 @@
 Projeto NG-Cash Front-End
 </h1>
 
-<div align="center"><img src="./NG.BANK.png"></div>
+<div align="center"><img width="600" src="./NG.BANK.png"></div>
 
 ## :books: Contexto
 
