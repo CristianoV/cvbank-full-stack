@@ -39,7 +39,7 @@ npm test
   POST /login
 ```
 
-| Parâmetro   | Tipo       | Descrição                           |
+| Body   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
 | `username` | `string` | **Obrigatório**. Usuario do Login  |
 | `password` | `string` | **Obrigatório**. senha do Login  |
@@ -49,7 +49,7 @@ npm test
 ```http
   POST /register
 ```
-| Parâmetro   | Tipo       | Descrição                           |
+| Body   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
 | `username` | `string` | **Obrigatório**. Usuario para Registro  |
 | `password` | `string` | **Obrigatório**. senha para Registro  |
@@ -70,7 +70,7 @@ npm test
   POST /transaction
 ```
 
-| Parâmetro   | Tipo       | Descrição                                   |
+| Body   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `username` | `string` | **Obrigatório**. Usuario para quem sera transferido dinheiro |
 | `value`      | `number` | **Obrigatório**. O valor no qual sera transferido em centavos (R$) |
@@ -96,7 +96,7 @@ npm test
   POST /transaction/filter
 ```
 
-| Parâmetro   | Tipo       | Descrição                                   |
+| Body   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `date`      | `string` | **Obrigatório**. Data em que deseja filtrar as transações |
 | `type`      | `string` | Opcional. O tipo que transação que deseja filtrar que pode ser nulla tbm |
