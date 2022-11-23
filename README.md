@@ -24,3 +24,7 @@ npm run compose:up
 cd ng-cash-full-stack
 npm run test-back
 ```
+
+## Autor
+
+[@CristianoV](https://www.github.com/CristianoV)
