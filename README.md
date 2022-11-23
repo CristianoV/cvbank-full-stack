@@ -14,6 +14,10 @@ Tudo isso com algumas seguranças como token JWT e Bcrypt para a encriptação d
 
 Como bônus, foram desenvolvidos alguns testes de integração para algumas rotas do back, esse projeto foi muito divertido de codar e pretendo continuar atualizando, adicionando mais testes para as camadas do back e iniciar os do front.
 
+## Sumário
+- [Tecnologias Back-end](https://github.com/CristianoV/ng-cash-full-stack/tree/master/back-end#man_technologist-tecnologias-bibliotecas-e-arquiteturas-usadas)
+- [Tecnologias Front-end](https://github.com/CristianoV/ng-cash-full-stack/tree/master/web#man_technologist-tecnologias-bibliotecas-e-arquiteturas-usadas)
+
 # Instruções da aplicação
 ### Instalar dependências
 ```
