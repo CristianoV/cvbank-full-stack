@@ -21,6 +21,7 @@ Projeto NG-Cash Back-End
 ### Iniciar Projeto sem Docker
 ```
 cd back-end
+npm i
 npm start
 ```
 
