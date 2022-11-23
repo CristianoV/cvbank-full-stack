@@ -17,6 +17,6 @@ Projeto NG-Cash Front-End
 ### Iniciar Projeto
 ```
 cd web
-npm run build
+npm i
 npm start
 ```
