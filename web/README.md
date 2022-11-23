@@ -4,8 +4,6 @@ Projeto NG-Cash Front-End
 
 <div align="center"><img width="600" src="./NG.BANK.png"></div>
 
-## :books: Contexto
-
 ## :man_technologist: Tecnologias, bibliotecas e arquiteturas usadas
   * __React__
   * __Next__
