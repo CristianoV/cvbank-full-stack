@@ -11,3 +11,12 @@ Projeto NG-Cash Front-End
   * __Context__
   * __Typescript__
   * __Tailwindcss__
+
+# Instruções da aplicação
+
+### Iniciar Projeto
+```
+cd web
+npm run build
+npm start
+```
