@@ -37,6 +37,11 @@ cd ng-cash-full-stack
 npm run test-back
 ```
 
+## Portas
+ - Front-End: `3000`
+ - Back-End: `3333`
+ - Postgress: `5432`
+
 ## Autor
 
 [@CristianoV](https://www.github.com/CristianoV)
