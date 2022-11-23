@@ -2,8 +2,6 @@
 Projeto NG-Cash Back-End
 </h1>
 
-## :books: Contexto
-
 ## :man_technologist: Tecnologias, bibliotecas e arquiteturas usadas
   * __Express__
   * __Postgress__
