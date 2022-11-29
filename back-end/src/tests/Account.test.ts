@@ -10,6 +10,7 @@ import Account from '../database/models/account';
 import { afterEach } from 'mocha';
 import { newAccount, newUsser } from './mocks/RegisterMocks';
 import { account } from './mocks/LoginMocks';
+import JwtSecret from '../utils/JwtService';
 
 chai.use(chaiHttp);
 
@@ -24,6 +25,7 @@ describe('Testando rota de Account', () => {
       Sinon.restore();
     });
     it('Testando Account com tudo correto', async () => {
+      Sinon.stub(JwtSecret, 'verify').resolves({ id: 1 });
       Sinon.stub(Account, 'findOne').resolves(account as any);
       Sinon.stub(User, 'findOne').resolves(newUsser as any);
       const response = await chai
