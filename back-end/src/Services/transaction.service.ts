@@ -40,12 +40,12 @@ export default class TransactionService implements ITransactionService {
     });
 
     await Account.update(
-      { balance: balanceDebitedAccountId - value },
+      { balance: Number(balanceDebitedAccountId) - Number(value) },
       { where: { id: debitedAccountId } }
     );
 
     await Account.update(
-      { balance: balanceCreditedAccountId + value },
+      { balance: Number(balanceCreditedAccountId) + Number(value) },
       { where: { id: creditedAccountId } }
     );
 
