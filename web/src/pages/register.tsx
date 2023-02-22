@@ -9,8 +9,10 @@ import { IContext } from '../interfaces/IData/IContext';
 export default function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [state, setState] = useAppContext() as unknown as [IContext,
-    (state: IContext) => void];
+  const [state, setState] = useAppContext() as unknown as [
+    IContext,
+    (state: IContext) => void
+  ];
 
   const [seePassword, setSeePassword] = useState(false);
   const [error, setError] = useState('');
