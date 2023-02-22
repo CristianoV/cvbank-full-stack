@@ -68,7 +68,7 @@ export default function TransactionTable() {
   };
 
   return (
-    <div className='flex flex-col justify-center pt-16'>
+    <div className='flex flex-col justify-center bg-white rounded p-1 m-2'>
       <form
         onSubmit={filteredTransactions}
         className='flex justify-center items-end m-6 gap-4'
