@@ -22,7 +22,7 @@ export default function InfoAcount() {
     currency: 'BRL',
   });
 
-  const loggount = () => {
+  const logout = () => {
     setState({
       ...state,
       token: '',
@@ -75,32 +75,20 @@ export default function InfoAcount() {
   return (
     <div
       className='bg-bank-primary text-bank-quaternary flex justify-between items-center h-16 w-full
-    fixed'
+    '
     >
-      <div className='ml-5'>
-        <h1>{state.username}</h1>
-        <div className='flex justify-between h-8 items-center'>
-          <h2 className='mr-2'>
-            {mostrar === true
-              ? priceFormat.format(state.balance / 100)
-              : 'R$ ****'}
-          </h2>
-          <button onClick={() => setMostrar(!mostrar)}>
-            {mostrar === true ? <BsFillEyeFill /> : <BsFillEyeSlashFill />}
-          </button>
-        </div>
+      <div className='ml-10'>
+        <Link href='/'>
+          <h1>NGBANCO</h1>
+        </Link>
       </div>
-      <div className='flex gap-5'>
-        <Link href='/account'>Início</Link>
-        <Link href='/transfer'>Transferencias</Link>
-        <Link href='/history'>Extrato</Link>
-      </div>
-      <button
-        onClick={loggount}
+      <div className='mr-10'>{state.username}</div>
+      {/* <button
+        onClick={logout}
         className='border border-bank-quaternary rounded-xl px-5 h-8 mr-5 hover:bg-bank-secondary'
       >
         Sair
-      </button>
+      </button> */}
     </div>
   );
 }
