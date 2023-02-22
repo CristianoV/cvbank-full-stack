@@ -8,7 +8,7 @@ export default function Account() {
   return (
     <>
       <Head>
-        <title>Account</title>
+        <title>Banco NG</title>
       </Head>
       <div>
         <InfoAcount />

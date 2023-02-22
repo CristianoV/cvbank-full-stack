@@ -1,9 +1,8 @@
-import InfoAcount from '../components/InfoAcount';
-import TransactionTable from '../components/TransactionTable';
-import LeftNavBar from '../components/LeftNavBar';
 import Head from 'next/head';
+import InfoAcount from '../components/InfoAcount';
+import LeftNavBar from '../components/LeftNavBar';
 
-export default function Account() {
+export default function Payment() {
   return (
     <>
       <Head>
@@ -13,9 +12,7 @@ export default function Account() {
         <InfoAcount />
         <div className='flex'>
           <LeftNavBar />
-          <div className='mx-auto'>
-            <TransactionTable />
-          </div>
+          <div className='mx-auto'></div>
         </div>
       </div>
     </>
