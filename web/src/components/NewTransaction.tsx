@@ -61,7 +61,7 @@ export default function NewTransaction() {
   );
 
   return (
-    <div className='pt-16'>
+    <div className='bg-white rounded p-1 m-2'>
       <form
         onSubmit={transaction}
         className='flex flex-col justify-center items-center m-6 gap-4'
