@@ -14,7 +14,6 @@ export default function InfoAccount() {
   const [state, setState] = useAppContext() as any;
   const router = useRouter();
 
-
   const logout = () => {
     setState({
       ...state,
@@ -49,7 +48,7 @@ export default function InfoAccount() {
             const {
               balance,
               user: { username },
-              id
+              id,
             } = data;
 
             setState({ ...state, id, username, balance, newBalance: false });
@@ -67,42 +66,43 @@ export default function InfoAccount() {
   }, [router, state, setState]);
 
   return (
-    <div
-      className='bg-bank-primary text-bank-quaternary flex justify-between items-center h-16 w-full
-    '
-    >
-      <div className='ml-10'>
-        <Link href='/'>
-          <h1>NGBANCO</h1>
-        </Link>
+    <header className='bg-bank-primary text-bank-quaternary'>
+      <div className='flex justify-between items-center h-16 w-full max-w-screen-xl mx-auto'>
+        <div className='ml-10'>
+          <Link href='/'>
+            <h1>
+              NGBANCO<span className='text-violet-500'>.</span>
+            </h1>
+          </Link>
+        </div>
+        <div className='dropdown mr-10'>
+          <button
+            className='btn-secondary dropdown-toggle'
+            type='button'
+            data-bs-toggle='dropdown'
+            aria-expanded='false'
+          >
+            {state.username}
+          </button>
+          <ul className='dropdown-menu'>
+            <li className='dropdown-item'>Nome: {state.username}</li>
+            <li className='dropdown-item'>Nº da conta: {state.id || '0000'}</li>
+            <li>
+              <a className='dropdown-item' href='#'>
+                Configuração
+              </a>
+            </li>
+            <li>
+              <a className='dropdown-item' href='#'>
+                Perfil
+              </a>
+            </li>
+            <li onClick={logout}>
+              <button className='dropdown-item'>Sair</button>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div className='dropdown mr-10'>
-        <button
-          className='btn-secondary dropdown-toggle'
-          type='button'
-          data-bs-toggle='dropdown'
-          aria-expanded='false'
-        >
-          {state.username}
-        </button>
-        <ul className='dropdown-menu'>
-          <li className='dropdown-item'>Nome: {state.username}</li>
-          <li className='dropdown-item'>Nº da conta: {state.id || '0000'}</li>
-          <li>
-            <a className='dropdown-item' href='#'>
-              Configuração
-            </a>
-          </li>
-          <li>
-            <a className='dropdown-item' href='#'>
-              Perfil
-            </a>
-          </li>
-          <li onClick={logout}>
-            <button className='dropdown-item'>Sair</button>
-          </li>
-        </ul>
-      </div>
-    </div>
+    </header>
   );
 }
