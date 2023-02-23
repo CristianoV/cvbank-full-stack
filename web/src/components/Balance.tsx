@@ -1,5 +1,6 @@
 import { useAppContext } from '../context/AppContext';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
+import { IoStorefrontOutline } from 'react-icons/io5';
 import { useState } from 'react';
 
 export default function Balance() {
@@ -22,10 +23,21 @@ export default function Balance() {
           )}
         </button>
       </div>
-      <div className='flex justify-between h-8 items-center'>
-        <h2 className='mr-2'>
+      <div className='flex flex-col h-5/6 justify-between'>
+        <h2 className='mr-2 font-bold mt-3'>
           {show === true ? priceFormat.format(state.balance / 100) : 'R$ ****'}
         </h2>
+        <div>
+          <h1>Vendas a receber</h1>
+          <p className='flex items-center gap-3 font-bold'>
+            <IoStorefrontOutline size={22} />{' '}
+            {show === true ? 'R$ 0,00' : 'R$ ****'}
+          </p>
+        </div>
+        <div>
+          <h1>Bloqueado</h1>
+          <p className='font-bold'>{show === true ? 'R$ 0,00' : 'R$ ****'}</p>
+        </div>
       </div>
     </div>
   );
