@@ -1,7 +1,6 @@
 import Head from 'next/head';
-import InfoAcount from '../components/InfoAcount';
+import InfoAccount from '../components/InfoAccount';
 import LeftNavBar from '../components/LeftNavBar';
-import NewTransaction from '../components/NewTransaction';
 
 export default function Generate() {
   return (
@@ -10,7 +9,7 @@ export default function Generate() {
         <title>Banco NG</title>
       </Head>
       <div>
-        <InfoAcount />
+        <InfoAccount />
         <div className='flex'>
           <LeftNavBar />
           <div className='mx-auto'></div>

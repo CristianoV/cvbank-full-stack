@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import InfoAcount from '../components/InfoAcount';
+import InfoAccount from '../components/InfoAccount';
 import LeftNavBar from '../components/LeftNavBar';
 
 export default function Payment() {
@@ -9,7 +9,7 @@ export default function Payment() {
         <title>Banco NG</title>
       </Head>
       <div>
-        <InfoAcount />
+        <InfoAccount />
         <div className='flex'>
           <LeftNavBar />
           <div className='mx-auto'></div>
