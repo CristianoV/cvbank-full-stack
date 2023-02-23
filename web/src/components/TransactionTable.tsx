@@ -113,7 +113,7 @@ export default function TransactionTable() {
           Pesquisar
         </button>
       </form>
-      <div className='overflow-x-auto  w-full  h-60'>
+      <div className='overflow-x-auto  w-full  h-50'>
         <table border={1} className='border border-black mx-auto my-15 w-11/12'>
           <thead>
             <tr className='bg-bank-primary text-white text-center'>
