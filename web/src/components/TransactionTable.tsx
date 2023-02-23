@@ -113,43 +113,45 @@ export default function TransactionTable() {
           Pesquisar
         </button>
       </form>
+      <div className='overflow-x-auto  w-full  h-60'>
+        <table border={1} className='border border-black mx-auto my-15 w-11/12'>
+          <thead>
+            <tr className='bg-bank-primary text-white text-center'>
+              <th>VALOR</th>
+              <th>Creditado</th>
+              <th>DEBITADO</th>
+              <th>DATA</th>
+            </tr>
+          </thead>
+          <tbody>
+            {!loading &&
+              state.transactions.map(
+                (
+                  {
+                    createdAt,
+                    value,
+                    id,
+                    creditedUser,
+                    debitedUser,
+                  }: ITransaction,
+                  index: Key
+                ) => {
+                  return (
+                    <TransactionCells
+                      createdAt={createdAt}
+                      value={value}
+                      creditedUser={creditedUser}
+                      debitedUser={debitedUser}
+                      id={id}
+                      key={index}
+                    />
+                  );
+                }
+              )}
+          </tbody>
+        </table>
+      </div>
 
-      <table border={1} className='border border-black mx-auto my-15 w-11/12'>
-        <thead>
-          <tr className='bg-bank-primary text-white text-center'>
-            <th>VALOR</th>
-            <th>Creditado</th>
-            <th>DEBITADO</th>
-            <th>DATA</th>
-          </tr>
-        </thead>
-        <tbody>
-          {!loading &&
-            state.transactions.map(
-              (
-                {
-                  createdAt,
-                  value,
-                  id,
-                  creditedUser,
-                  debitedUser,
-                }: ITransaction,
-                index: Key
-              ) => {
-                return (
-                  <TransactionCells
-                    createdAt={createdAt}
-                    value={value}
-                    creditedUser={creditedUser}
-                    debitedUser={debitedUser}
-                    id={id}
-                    key={index}
-                  />
-                );
-              }
-            )}
-        </tbody>
-      </table>
       {loading && (
         <div className='mx-auto mb-28'>
           <Loading size={6} />
