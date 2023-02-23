@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { fetchFromApi } from '../lib/axios';
 import Link from 'next/link';
-import { BsFillEyeSlashFill, BsFillEyeFill } from 'react-icons/bs';
 
 interface IAccountData {
   balance: number;
@@ -11,16 +10,10 @@ interface IAccountData {
   username: string;
 }
 
-export default function InfoAcount() {
+export default function InfoAccount() {
   const [state, setState] = useAppContext() as any;
-  const [info, setInfo] = useState({} as IAccountData);
-  const [mostrar, setMostrar] = useState(true);
   const router = useRouter();
 
-  const priceFormat = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  });
 
   const logout = () => {
     setState({
@@ -56,9 +49,10 @@ export default function InfoAcount() {
             const {
               balance,
               user: { username },
+              id
             } = data;
 
-            setState({ ...state, username, balance, newBalance: false });
+            setState({ ...state, id, username, balance, newBalance: false });
           }
           return null;
         }
@@ -82,13 +76,33 @@ export default function InfoAcount() {
           <h1>NGBANCO</h1>
         </Link>
       </div>
-      <div className='mr-10'>{state.username}</div>
-      {/* <button
-        onClick={logout}
-        className='border border-bank-quaternary rounded-xl px-5 h-8 mr-5 hover:bg-bank-secondary'
-      >
-        Sair
-      </button> */}
+      <div className='dropdown mr-10'>
+        <button
+          className='btn-secondary dropdown-toggle'
+          type='button'
+          data-bs-toggle='dropdown'
+          aria-expanded='false'
+        >
+          {state.username}
+        </button>
+        <ul className='dropdown-menu'>
+          <li className='dropdown-item'>Nome: {state.username}</li>
+          <li className='dropdown-item'>Nº da conta: {state.id || '0000'}</li>
+          <li>
+            <a className='dropdown-item' href='#'>
+              Configuração
+            </a>
+          </li>
+          <li>
+            <a className='dropdown-item' href='#'>
+              Perfil
+            </a>
+          </li>
+          <li onClick={logout}>
+            <button className='dropdown-item'>Sair</button>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
