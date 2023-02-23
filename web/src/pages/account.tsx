@@ -13,7 +13,7 @@ export default function Account() {
       </Head>
       <div>
         <InfoAccount />
-        <div className='flex'>
+        <div className='flex max-w-screen-xl mx-auto'>
           <LeftNavBar />
           <div className='flex w-3/4 flex-wrap justify-center'>
             <Balance />

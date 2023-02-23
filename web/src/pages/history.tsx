@@ -11,7 +11,7 @@ export default function Account() {
       </Head>
       <div>
         <InfoAccount />
-        <div className='flex'>
+        <div className='flex max-w-screen-xl mx-auto'>
           <LeftNavBar />
           <div className='mx-auto'>
             <TransactionTable />
