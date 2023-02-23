@@ -11,7 +11,7 @@ export default function Balance() {
     currency: 'BRL',
   });
   return (
-    <div className='bg-white rounded p-1 m-2 w-5/12 h-72 text-2xl'>
+    <div className='bg-white rounded p-3 m-2 w-5/12 h-72 text-2xl'>
       <div className='flex justify-between'>
         <h2>Saldo</h2>
         <button onClick={() => setShow(!show)}>
