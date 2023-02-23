@@ -8,9 +8,10 @@ import {
   MdOutlinePayment,
 } from 'react-icons/md';
 
-const input = 'flex items-center gap-5 p-2';
+const input = 'flex items-center gap-3 p-2 hover:text-blue-500';
 
-const inputSelect = 'flex items-center gap-5 bg-gray-200 p-2';
+const inputSelect =
+  'flex items-center gap-3 bg-gray-200 p-2 hover:text-blue-500';
 
 export default function LeftNavBar() {
   const router = useRouter();
