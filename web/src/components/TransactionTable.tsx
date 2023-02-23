@@ -8,8 +8,10 @@ import { IContext } from '../interfaces/IData/IContext';
 import { ITransaction } from '../interfaces/IData/ITransaction';
 
 export default function TransactionTable() {
-  const [state, setState] = useAppContext() as unknown as [IContext,
-    (state: IContext) => void];
+  const [state, setState] = useAppContext() as unknown as [
+    IContext,
+    (state: IContext) => void
+  ];
 
   const [loading, setLoading] = useState(true);
   const [date, setDate] = useState('');
@@ -45,7 +47,7 @@ export default function TransactionTable() {
     };
   }, []);
 
-  const filteredTransactions = async (e: { preventDefault: () => void; }) => {
+  const filteredTransactions = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     if (token) {
@@ -112,9 +114,9 @@ export default function TransactionTable() {
         </button>
       </form>
 
-      <table border={1} className='border border-black mx-auto mb-28 w-6/12'>
+      <table border={1} className='border border-black mx-auto my-15 w-11/12'>
         <thead>
-          <tr>
+          <tr className='bg-bank-primary text-white text-center'>
             <th>VALOR</th>
             <th>Creditado</th>
             <th>DEBITADO</th>
@@ -125,7 +127,13 @@ export default function TransactionTable() {
           {!loading &&
             state.transactions.map(
               (
-                { createdAt, value, id, creditedUser, debitedUser }: ITransaction,
+                {
+                  createdAt,
+                  value,
+                  id,
+                  creditedUser,
+                  debitedUser,
+                }: ITransaction,
                 index: Key
               ) => {
                 return (
