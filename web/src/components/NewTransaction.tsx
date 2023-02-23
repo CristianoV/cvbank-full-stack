@@ -9,6 +9,10 @@ export default function NewTransaction() {
   const [username, setUsername] = useState('');
   const [value, setValue] = useState(0);
   const [usuario, setUsuario] = useState({} as { price: string });
+  const priceFormat = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
 
   useEffect(() => {
     const priceFormat = () => {
@@ -63,7 +67,7 @@ export default function NewTransaction() {
   return (
     <div className='bg-white rounded p-1 m-2'>
       <form
-        onSubmit={transaction}
+        // onSubmit={transaction}
         className='flex flex-col justify-center items-center m-6 gap-4'
       >
         <label htmlFor='name' className='flex flex-col'>
@@ -88,11 +92,60 @@ export default function NewTransaction() {
         <button
           className='bg-bank-primary rounded-lg w-80 h-11 text-white
                   disabled:opacity-50 disabled:cursor-not-allowed hover:bg-bank-secondary'
-          type='submit'
+          type='button'
+          data-bs-toggle='modal'
+          data-bs-target='#staticBackdrop'
         >
           Transferir
         </button>
       </form>
+      <div
+        className='modal fade'
+        id='staticBackdrop'
+        data-bs-backdrop='static'
+        data-bs-keyboard='false'
+        tabIndex={-1}
+        aria-labelledby='staticBackdropLabel'
+        aria-hidden='true'
+      >
+        <div className='modal-dialog'>
+          <div className='modal-content'>
+            <div className='modal-header'>
+              <h1 className='modal-title fs-5' id='staticBackdropLabel'>
+                Você tem certeza que deseja adicionar essa transação?
+              </h1>
+              <button
+                type='button'
+                className='btn-close'
+                data-bs-dismiss='modal'
+                aria-label='Close'
+              ></button>
+            </div>
+            <div className='modal-body'>
+              Valor: {priceFormat.format(value / 100)} | Nome: {username}
+            </div>
+            <div className='modal-footer'>
+              <button
+                type='button'
+                className='bg-bank-primary rounded-lg w-40 h-11 text-white
+                  disabled:opacity-50 disabled:cursor-not-allowed hover:bg-bank-secondary'
+                data-bs-dismiss='modal'
+              >
+                Cancelar
+              </button>
+              <button
+                type='button'
+                className='bg-bank-primary rounded-lg w-40 h-11 text-white
+                  disabled:opacity-50 disabled:cursor-not-allowed hover:bg-bank-secondary'
+                data-bs-dismiss='modal'
+                onClick={transaction}
+              >
+                Continuar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
