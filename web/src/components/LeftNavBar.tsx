@@ -11,55 +11,53 @@ import {
 const input = 'flex items-center gap-3 p-2 hover:text-blue-500';
 
 const inputSelect =
-  'flex items-center gap-3 bg-gray-200 p-2 hover:text-blue-500';
+  'flex items-center gap-3 bg-gray-200 p-2 hover:text-blue-500 rounded';
+
+function NavLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
+  const router = useRouter();
+  const isActive = router.asPath === href;
+  const linkClass = isActive ? inputSelect : input;
+  return (
+    <Link href={href}>
+      <p className={linkClass}>{children}</p>
+    </Link>
+  );
+}
 
 export default function LeftNavBar() {
-  const router = useRouter();
   return (
     <div className='flex flex-col w-3/12 h-screen bg-white rounded p-1 m-2'>
       <div className='flex flex-col h-full mt-4 m-10 text-2xl gap-4'>
-        <Link
-          href='/account'
-          className={router.asPath === '/account' ? inputSelect : input}
-        >
+        <NavLink href='/account'>
           <BiHomeAlt />
           Pagina inicial
-        </Link>
-        <Link
-          href='/history'
-          className={router.asPath === '/history' ? inputSelect : input}
-        >
+        </NavLink>
+        <NavLink href='/history'>
           <MdOutlineRequestPage />
           Extrato
-        </Link>
-        <Link
-          href='/payment'
-          className={router.asPath === '/payment' ? inputSelect : input}
-        >
+        </NavLink>
+        <NavLink href='/payment'>
           <MdPayments />
           Pagamento
-        </Link>
-        <Link
-          href='/transfer'
-          className={router.asPath === '/transfer' ? inputSelect : input}
-        >
+        </NavLink>
+        <NavLink href='/transfer'>
           <BiTransfer />
           Transferencia
-        </Link>
-        <Link
-          href='/pix'
-          className={router.asPath === '/pix' ? inputSelect : input}
-        >
+        </NavLink>
+        <NavLink href='/pix'>
           <MdMoney />
           Pix
-        </Link>
-        <Link
-          href='/generate'
-          className={router.asPath === '/generate' ? inputSelect : input}
-        >
+        </NavLink>
+        <NavLink href='/generate'>
           <MdOutlinePayment />
           Gerar Boleto
-        </Link>
+        </NavLink>
       </div>
     </div>
   );
