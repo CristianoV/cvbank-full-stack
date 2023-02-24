@@ -31,6 +31,14 @@ export default function InfoAccount() {
     router.push('/login');
   };
 
+  async function handleShare(copy: string) {
+    try {
+      await navigator.clipboard.writeText(copy);
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  }
+
   useEffect(() => {
     const verifyToken = async () => {
       try {
@@ -85,8 +93,15 @@ export default function InfoAccount() {
             {state.username}
           </button>
           <ul className='dropdown-menu'>
-            <li className='dropdown-item'>Nome: {state.username}</li>
-            <li className='dropdown-item'>Nº da conta: {state.id || '0000'}</li>
+            <li
+              onClick={() => handleShare(state.username)}
+              className='dropdown-item'
+            >
+              Nome: {state.username}
+            </li>
+            <li onClick={() => handleShare(state.id)} className='dropdown-item'>
+              Nº da conta: {state.id || '0000'}
+            </li>
             <li>
               <Link className='dropdown-item' href='/config'>
                 Configuração
