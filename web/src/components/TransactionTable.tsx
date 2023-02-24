@@ -73,12 +73,12 @@ export default function TransactionTable() {
     <div className='flex flex-col bg-white rounded p-1 m-2 h-72'>
       <form
         onSubmit={filteredTransactions}
-        className='flex items-end m-6 gap-4'
+        className='flex items-end m-6 gap-4 justify-center'
       >
-        <label htmlFor='data' className='flex flex-col items-center'>
+        <label htmlFor='data' className='flex flex-col items-center w-3/12'>
           Selecione o dia
           <input
-            className='border border-[#001813] rounded-md p-1 w-60 h-11 shadow-md'
+            className='border border-[#001813] w-full rounded-md p-1 h-11 shadow-md'
             type='date'
             pattern='[0-9]{4}-[0-9]{2}-[0-9]{2}'
             required
@@ -89,12 +89,12 @@ export default function TransactionTable() {
             }}
           />
         </label>
-        <label htmlFor='' className='flex flex-col items-center'>
+        <label htmlFor='' className='flex flex-col items-center w-3/12'>
           Tipo de Transação
           <select
             name=''
             id=''
-            className='border border-[#001813] rounded-md p-1 w-60 h-11 shadow-md'
+            className='border border-[#001813] w-full rounded-md p-1 h-11 shadow-md'
             onChange={(e) => {
               setFilter(e.target.value);
             }}
@@ -106,7 +106,7 @@ export default function TransactionTable() {
           </select>
         </label>
         <button
-          className='bg-bank-primary rounded-lg w-60 h-11 text-white
+          className='bg-bank-primary rounded-lg h-11 text-white w-3/12
                   disabled:opacity-50 disabled:cursor-not-allowed hover:bg-bank-secondary'
           type='submit'
         >

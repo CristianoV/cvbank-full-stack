@@ -75,7 +75,7 @@ export default function InfoAccount() {
             </h1>
           </Link>
         </div>
-        <div className='dropdown mx-1'>
+        <div className='dropdown mx-2'>
           <button
             className='btn-secondary dropdown-toggle'
             type='button'

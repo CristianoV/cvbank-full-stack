@@ -32,7 +32,7 @@ function NavLink({
 
 export default function LeftNavBar() {
   return (
-    <div className='flex flex-col w-3/12 h-screen bg-white rounded p-1 m-2'>
+    <div className='flex flex-col w-72 h-screen bg-white rounded p-1 m-2'>
       <div className='flex flex-col h-full mt-4 m-10 text-2xl gap-4'>
         <NavLink href='/account'>
           <BiHomeAlt />
