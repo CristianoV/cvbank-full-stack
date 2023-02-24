@@ -88,14 +88,14 @@ export default function InfoAccount() {
             <li className='dropdown-item'>Nome: {state.username}</li>
             <li className='dropdown-item'>Nº da conta: {state.id || '0000'}</li>
             <li>
-              <a className='dropdown-item' href='/config'>
+              <Link className='dropdown-item' href='/config'>
                 Configuração
-              </a>
+              </Link>
             </li>
             <li>
-              <a className='dropdown-item' href='/profile'>
+              <Link className='dropdown-item' href='/profile'>
                 Perfil
-              </a>
+              </Link>
             </li>
             <li onClick={logout}>
               <button className='dropdown-item'>Sair</button>
