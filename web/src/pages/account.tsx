@@ -13,9 +13,9 @@ export default function Account() {
       </Head>
       <div>
         <InfoAccount />
-        <div className='flex max-w-screen-xl mx-auto'>
+        <div className='flex max-w-screen-xl mx-auto overflow-x-auto'>
           <LeftNavBar />
-          <div className='flex w-3/4 flex-wrap justify-center'>
+          <div className='flex flex-wrap w-screen'>
             <Balance />
             <Second />
             <TransactionTable />

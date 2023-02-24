@@ -70,10 +70,10 @@ export default function TransactionTable() {
   };
 
   return (
-    <div className='flex flex-col justify-center bg-white rounded p-1 m-2'>
+    <div className='flex flex-col bg-white rounded p-1 m-2 h-72'>
       <form
         onSubmit={filteredTransactions}
-        className='flex justify-center items-end m-6 gap-4'
+        className='flex items-end m-6 gap-4'
       >
         <label htmlFor='data' className='flex flex-col items-center'>
           Selecione o dia
