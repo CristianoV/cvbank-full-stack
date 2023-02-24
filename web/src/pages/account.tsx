@@ -13,11 +13,13 @@ export default function Account() {
       </Head>
       <div>
         <InfoAccount />
-        <div className='flex max-w-screen-xl mx-auto overflow-x-auto'>
+        <div className='flex max-w-screen-xl m-auto items-start'>
           <LeftNavBar />
-          <div className='flex flex-wrap w-screen'>
-            <Balance />
-            <Second />
+          <div className='w-full justify-center flex flex-col'>
+            <div className='flex justify-center'>
+              <Balance />
+              <Second />
+            </div>
             <TransactionTable />
           </div>
         </div>
