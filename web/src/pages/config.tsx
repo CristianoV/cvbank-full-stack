@@ -10,7 +10,7 @@ export default function Config() {
       </Head>
       <div>
         <InfoAccount />
-        <div className='flex max-w-screen-xl mx-auto overflow-x-auto items-start'>
+        <div className='flex max-w-screen-xl mx-4 m-auto items-start'>
           <div>
             <ConfigComponent />
           </div>

@@ -10,7 +10,7 @@ export default function Payment() {
       </Head>
       <div>
         <InfoAccount />
-        <div className='flex max-w-screen-xl mx-auto'>
+        <div className='flex max-w-screen-xl mx-4 m-auto items-start'>
           <LeftNavBar />
           <div className='mx-auto'></div>
         </div>
