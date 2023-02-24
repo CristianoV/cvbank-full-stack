@@ -9,6 +9,8 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3333
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3000"]
       timeout: 10s
