@@ -13,17 +13,33 @@ export default function Account() {
       </Head>
       <main>
         <InfoAccount />
-        <div className='flex max-w-screen-xl mx-4 m-auto items-start'>
-          <LeftNavBar />
-          <div className='w-full justify-center flex flex-col'>
-            <div className='flex justify-center'>
-              <Balance />
-              <Second />
+        <div className='flex max-w-screen-xl m-auto'>
+          <div className='flex mx-4 w-full items-start'>
+            <LeftNavBar />
+            <div className='w-full justify-center flex flex-col'>
+              <div className='flex justify-center'>
+                <Balance />
+                <Second />
+              </div>
+              <TransactionTable />
             </div>
-            <TransactionTable />
           </div>
         </div>
       </main>
     </>
   );
+}
+
+{
+  /* <div>
+  <InfoAccount />
+  <div className='flex max-w-screen-xl mx-auto overflow-x-auto'>
+    <LeftNavBar />
+    <div className='flex flex-wrap w-screen'>
+      <Balance />
+      <Second />
+      <TransactionTable />
+    </div>
+  </div>
+</div>; */
 }

@@ -9,15 +9,17 @@ export default function Account() {
       <Head>
         <title>Banco NG</title>
       </Head>
-      <div>
+      <main>
         <InfoAccount />
-        <div className='flex max-w-screen-xl mx-4 m-auto items-start'>
-          <LeftNavBar />
-          <div className='w-full justify-center flex flex-col'>
-            <TransactionTable />
+        <div className='flex max-w-screen-xl m-auto'>
+          <div className='flex mx-4 w-full items-start'>
+            <LeftNavBar />
+            <div className='w-full justify-center flex flex-col'>
+              <TransactionTable />
+            </div>
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }

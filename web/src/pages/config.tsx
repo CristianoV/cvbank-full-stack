@@ -8,14 +8,14 @@ export default function Config() {
       <Head>
         <title>Banco NG</title>
       </Head>
-      <div>
+      <main>
         <InfoAccount />
-        <div className='flex max-w-screen-xl mx-4 m-auto items-start'>
-          <div>
+        <div className='flex max-w-screen-xl m-auto'>
+          <div className='flex mx-4 w-full items-start'>
             <ConfigComponent />
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }
