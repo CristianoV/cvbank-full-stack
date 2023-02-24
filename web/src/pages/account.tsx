@@ -11,7 +11,7 @@ export default function Account() {
       <Head>
         <title>Banco NG</title>
       </Head>
-      <div>
+      <main>
         <InfoAccount />
         <div className='flex max-w-screen-xl mx-4 m-auto items-start'>
           <LeftNavBar />
@@ -23,7 +23,7 @@ export default function Account() {
             <TransactionTable />
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }
