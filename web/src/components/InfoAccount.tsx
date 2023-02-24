@@ -68,14 +68,14 @@ export default function InfoAccount() {
   return (
     <header className='bg-bank-primary text-bank-quaternary'>
       <div className='flex justify-between items-center h-16 w-full max-w-screen-xl mx-auto'>
-        <div className='ml-10'>
+        <div className='mx-1'>
           <Link href='/'>
-            <h1>
+            <h1 className='text-4xl font-bold transition duration-500 ease-in-out animate-pulse'>
               NGBANCO<span className='text-violet-500'>.</span>
             </h1>
           </Link>
         </div>
-        <div className='dropdown mr-10'>
+        <div className='dropdown mx-1'>
           <button
             className='btn-secondary dropdown-toggle'
             type='button'
@@ -88,12 +88,12 @@ export default function InfoAccount() {
             <li className='dropdown-item'>Nome: {state.username}</li>
             <li className='dropdown-item'>Nº da conta: {state.id || '0000'}</li>
             <li>
-              <a className='dropdown-item' href='#'>
+              <a className='dropdown-item' href='/config'>
                 Configuração
               </a>
             </li>
             <li>
-              <a className='dropdown-item' href='#'>
+              <a className='dropdown-item' href='/profile'>
                 Perfil
               </a>
             </li>
