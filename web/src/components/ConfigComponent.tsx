@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 function ButtonWithIcon({ icon, text }: { icon: any; text: string }) {
   return (
-    <button className='flex items-center gap-2'>
+    <button className='flex items-center gap-2 hover:bg-gray-100 p-2 rounded'>
       {icon}
       {text}
     </button>
@@ -20,7 +20,7 @@ export default function ProfileComponent() {
   const [state, setState] = useAppContext() as any;
 
   return (
-    <div className='bg-white rounded p-2 m-2 flex flex-col'>
+    <div className='bg-white rounded p-2 m-2 flex flex-col h-screen'>
       <div className='flex'>
         <Link href='/profile'>
           <img
