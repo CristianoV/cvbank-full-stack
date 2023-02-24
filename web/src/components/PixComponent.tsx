@@ -71,11 +71,11 @@ export default function NewTransaction() {
         className='flex flex-col justify-center items-center m-6 gap-4'
       >
         <label htmlFor='name' className='flex flex-col'>
-          Conta
+          Pix
           <input
             className='border border-[#001813] rounded-md p-1 w-80 h-11 shadow-md'
             type='input'
-            placeholder='Adicione o Nº da conta'
+            placeholder='Adicione a Chave Pix'
             id='name'
             value={username}
             onChange={(event) => setUsername(event.target.value)}
