@@ -4,6 +4,7 @@ import { fetchFromApi } from '../lib/axios';
 import { useAppContext } from '../context/AppContext';
 import ValidatePassword from '../components/ValidatePassword';
 import ValidateUsername from '../components/ValidateUsername';
+import Loading from '../components/Loading';
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -11,6 +12,7 @@ export default function Login() {
   const [state, setState] = useAppContext() as any;
   const [error, setError] = useState('');
   const [seePassword, setSeePassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const SetToken = (token: string) => {
@@ -23,6 +25,7 @@ export default function Login() {
   const userLogin = async (event: FormEvent) => {
     event.preventDefault();
     try {
+      setLoading(true);
       const response = await fetchFromApi.post('/login', {
         username,
         password,
@@ -36,10 +39,17 @@ export default function Login() {
         router.push('/account');
       }
 
+      setError(data.error); 
+      setPassword('');
+      setUsername('');
+    } catch (error: any) {
+      setLoading(false);
+      const { data } = error.response;
+
       setError(data.error);
       setPassword('');
       setUsername('');
-    } catch (error) {}
+    }
   };
 
   return (
@@ -91,13 +101,28 @@ export default function Login() {
             novamente, por favor.
           </h6>
         )}
-        <button
-          className='bg-bank-primary rounded-lg w-80 h-11 text-white
-          disabled:opacity-50 disabled:cursor-not-allowed hover:bg-bank-secondary'
-          type='submit'
-        >
-          LOGIN
-        </button>
+    <button
+      className={`bg-bank-primary rounded-lg w-80 h-11 text-white 
+        ${loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-bank-secondary'}`}
+      type='submit'
+      disabled={loading}
+    >
+      {loading ? (
+        <div className="flex items-center justify-center">
+          <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm12 0a8 8 0 100-16v3a5 5 0 010 10v3z"
+            />
+          </svg>
+          <span>Carregando...</span>
+        </div>
+      ) : (
+        <span>LOGIN</span>
+      )}
+    </button>
         <button
           className='border-2 border-bank-primary rounded-lg w-80 h-11 text-bank-primary'
           type='button'
