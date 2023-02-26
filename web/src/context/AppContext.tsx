@@ -8,6 +8,7 @@ export function AppWrapper({ children }: IAppContextProps) {
     token: '',
     username: '',
     balance: 0,
+    pixKey: '',
     transactions: [],
     newTransaction: true,
     newBalance: true,
