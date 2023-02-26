@@ -12,7 +12,7 @@ const validate = new Validate();
 TransactionRoutes.post(
   '/',
   validate.checkUserExists,
-  validate.ckeckTransaction,
+  validate.checkTransaction,
   (request: Request, response: Response) =>
     transactionController.createTransaction(request, response)
 );

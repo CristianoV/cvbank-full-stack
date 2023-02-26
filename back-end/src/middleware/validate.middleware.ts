@@ -30,47 +30,46 @@ export default class UserMiddleware {
     return next();
   }
 
-  public async ckeckTransaction(
+  public async checkTransaction(
     req: Request,
     res: Response,
     next: NextFunction
   ) {
-
-    const { value, username } = req.body;
+    const { value, creditedAccountId } = req.body;
     const { authorization } = req.headers as { authorization: string };
-
     const { id } = JwtSecret.verify(authorization) as { id: number };
-
-    const { balance, id: debitedAccountId } =
-      (await Account.findOne({
-        where: { id },
-        raw: true,
-      })) as { balance: number; id: number };
-
-      const { id: creditedAccountId } =
-      (await Account.findOne({
-        include: [
-          {
-            model: User,
-            as: 'user',
-            where: { username },
-          },
-        ],
-        raw: true,
-      })) as { balance: number; id: number };
-
-    if (balance < value) {
+  
+    const debitedAccount = await Account.findByPk(id);
+    const creditedAccount = await Account.findOne({
+      include: [
+        {
+          model: User,
+          as: 'user',
+          where: { id: creditedAccountId },
+        },
+      ],
+    });
+  
+    if (!debitedAccount) {
+      throw new Error('Debited account not found');
+    }
+  
+    if (!creditedAccount) {
+      throw new Error('Credited account not found');
+    }
+  
+    if (debitedAccount.balance < value) {
       throw new Error('Insufficient funds');
     }
-
-    if (creditedAccountId === debitedAccountId) {
+  
+    if (creditedAccount.id === debitedAccount.id) {
       throw new Error('You cannot transfer to yourself');
     }
-
+  
     if (value <= 0) {
       throw new Error('You cannot transfer a negative value');
     }
-
+  
     return next();
   }
 }

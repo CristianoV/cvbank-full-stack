@@ -6,11 +6,11 @@ export default class TransactionController implements ITransactionController {
   constructor(private registerService: TransactionService) {}
 
   public async createTransaction(req: Request, res: Response) {
-    const { username, value } = req.body;
+    const { creditedAccountId, value } = req.body;
     const { authorization } = req.headers as { authorization: string };
 
     const user = await this.registerService.newTransaction({
-      username,
+      creditedAccountId,
       value,
       authorization,
     });

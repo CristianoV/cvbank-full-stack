@@ -4,7 +4,7 @@ import { ITransactionData } from '../IData/ITransactionData';
 
 export interface ITransactionService {
   newTransaction({
-    username,
+    creditedAccountId,
     authorization,
     value,
   }: ITransactionData): Promise<Transaction>;

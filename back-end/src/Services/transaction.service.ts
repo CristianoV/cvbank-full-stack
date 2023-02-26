@@ -9,46 +9,46 @@ import { IFilterData } from '../Interfaces/IData/IFilterData';
 
 export default class TransactionService implements ITransactionService {
   public async newTransaction({
-    username,
+    creditedAccountId,
     authorization,
     value,
   }: ITransactionData) {
     const { id } = JwtSecret.verify(authorization) as { id: number };
-
-    const { balance: balanceCreditedAccountId, id: creditedAccountId } =
-      (await Account.findOne({
-        include: [
-          {
-            model: User,
-            as: 'user',
-            where: { username },
-          },
-        ],
-        raw: true,
-      })) as { balance: number; id: number };
-
-    const { balance: balanceDebitedAccountId, id: debitedAccountId } =
-      (await Account.findOne({
-        where: { id },
-        raw: true,
-      })) as { balance: number; id: number };
-
+  
+    const creditedAccount = await Account.findOne({
+      include: [
+        {
+          model: User,
+          as: 'user',
+          where: { id: creditedAccountId },
+        },
+      ],
+    });
+  
+    if (!creditedAccount) {
+      throw new Error('Credited account not found');
+    }
+  
+    const debitedAccount = await Account.findByPk(id);
+  
+    if (!debitedAccount) {
+      throw new Error('Debited account not found');
+    }
+  
     const transaction = await Transaction.create({
-      creditedAccountId,
-      debitedAccountId,
+      creditedAccountId: creditedAccount.id,
+      debitedAccountId: debitedAccount.id,
       value,
     });
-
-    await Account.update(
-      { balance: Number(balanceDebitedAccountId) - Number(value) },
-      { where: { id: debitedAccountId } }
-    );
-
-    await Account.update(
-      { balance: Number(balanceCreditedAccountId) + Number(value) },
-      { where: { id: creditedAccountId } }
-    );
-
+  
+    const newDebitedBalance = Number(debitedAccount.balance) - Number(value);
+    const newCreditedBalance = Number(creditedAccount.balance) + Number(value);
+  
+    await Promise.all([
+      debitedAccount.update({ balance: newDebitedBalance }),
+      creditedAccount.update({ balance: newCreditedBalance }),
+    ]);
+  
     return transaction;
   }
 
