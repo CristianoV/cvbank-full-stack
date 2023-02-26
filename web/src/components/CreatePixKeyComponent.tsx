@@ -1,20 +1,48 @@
 import { useAppContext } from '../context/AppContext';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import { useState } from 'react';
+import { fetchFromApi } from '../lib/axios';
+import { useRouter } from 'next/router';
 
 export default function Balance() {
   const [state, setState] = useAppContext() as any;
   const [key, setKey] = useState('');
   const [show, setShow] = useState(true);
+  const route = useRouter();
 
   const handleGenerateKey = () => {
     const key = Math.random().toString(36).substr(2, 9);
     setKey(key);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(key);
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetchFromApi.post(
+        '/account',
+        { pixKey: key },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      const { data } = response;
+
+      if (!data.error) {
+        setState({ ...state, pixKey: key });
+        // setId('');
+        // setUser({ price: '' });
+        // setValue(0);
+        // setState({ ...state, newTransaction: true, newBalance: true });
+      }
+
+      // setError(data.error);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (state.pixKey) return null;
