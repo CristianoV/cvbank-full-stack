@@ -5,6 +5,7 @@ import User from './user';
 class Account extends Model {
   public id!: number;
   public balance!: number;
+  public pixKey: string;
 }
 
 Account.init({
