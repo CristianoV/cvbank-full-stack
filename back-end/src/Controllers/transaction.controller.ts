@@ -9,8 +9,21 @@ export default class TransactionController implements ITransactionController {
     const { creditedAccountId, value } = req.body;
     const { authorization } = req.headers as { authorization: string };
 
-    const user = await this.registerService.newTransaction({
+    const user = await this.registerService.transferTransaction({
       creditedAccountId,
+      value,
+      authorization,
+    });
+
+    return res.status(201).json(user);
+  }
+
+  public async createPixTransaction(req: Request, res: Response) {
+    const { pixKey, value } = req.body;
+    const { authorization } = req.headers as { authorization: string };
+
+    const user = await this.registerService.pixTransaction({
+      pixKey,
       value,
       authorization,
     });
