@@ -1,13 +1,27 @@
 import { IFilterData } from '../IData/IFilterData';
 import Transaction from '../../database/models/transaction';
-import { ITransactionData } from '../IData/ITransactionData';
+import {
+  ITransactionData,
+  ITransactionTransferData,
+  ITransactionPixData,
+} from '../IData/ITransactionData';
 
 export interface ITransactionService {
-  newTransaction({
+  executeTransaction({
+    creditedAccount,
+    debitedAccount,
+    value,
+  }: ITransactionData): Promise<Transaction>;
+  transferTransaction({
     creditedAccountId,
     authorization,
     value,
-  }: ITransactionData): Promise<Transaction>;
+  }: ITransactionTransferData): Promise<Transaction>;
+  pixTransaction({
+    pixKey,
+    authorization,
+    value,
+  }: ITransactionPixData): Promise<Transaction>;
   getTransactions(token: string): Promise<Transaction[]>;
   getTransactionsByFilter({
     authorization,
