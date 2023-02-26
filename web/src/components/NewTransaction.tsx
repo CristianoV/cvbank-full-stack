@@ -6,9 +6,9 @@ import Input from './Input';
 export default function NewTransaction() {
   const [state, setState] = useAppContext() as any;
   const [error, setError] = useState('');
-  const [username, setUsername] = useState('');
+  const [id, setId] = useState('');
   const [value, setValue] = useState(0);
-  const [usuario, setUsuario] = useState({} as { price: string });
+  const [user, setUser] = useState({} as { price: string });
   const priceFormat = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
@@ -16,14 +16,14 @@ export default function NewTransaction() {
 
   useEffect(() => {
     const priceFormat = () => {
-      const { price } = usuario;
+      const { price } = user;
       if (price) {
         const priceNumber = Number(price.replace(/\D/g, ''));
         setValue(Number(priceNumber));
       }
     };
     priceFormat();
-  }, [usuario]);
+  }, [user]);
 
   const transaction = async (event: FormEvent) => {
     event.preventDefault();
@@ -31,7 +31,7 @@ export default function NewTransaction() {
       const token = localStorage.getItem('token');
       const response = await fetchFromApi.post(
         '/transaction',
-        { username, value },
+        { creditedAccountId: id, value },
         {
           headers: {
             Authorization: token,
@@ -42,8 +42,8 @@ export default function NewTransaction() {
       const { data } = response;
 
       if (!data.error) {
-        setUsername('');
-        setUsuario({ price: '' });
+        setId('');
+        setUser({ price: '' });
         setValue(0);
         setState({ ...state, newTransaction: true, newBalance: true });
       }
@@ -56,12 +56,12 @@ export default function NewTransaction() {
 
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
-      setUsuario({
-        ...usuario,
+      setUser({
+        ...user,
         [e.currentTarget.name]: e.currentTarget.value,
       });
     },
-    [usuario]
+    [user]
   );
 
   return (
@@ -77,8 +77,8 @@ export default function NewTransaction() {
             type='input'
             placeholder='Adicione o Nº da conta'
             id='name'
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            value={id}
+            onChange={(event) => setId(event.target.value)}
           />
         </label>
         <Input
@@ -86,7 +86,7 @@ export default function NewTransaction() {
           mask='currency'
           // prefix='R$'
           placeholder='R$ 0,00'
-          value={usuario.price}
+          value={user.price}
           onChange={handleChange}
         />
         <button
@@ -112,7 +112,7 @@ export default function NewTransaction() {
           <div className='modal-content'>
             <div className='modal-header'>
               <h1 className='modal-title fs-5' id='staticBackdropLabel'>
-                Você tem certeza que deseja adicionar essa transação?
+                Você tem certeza que deseja efetuar essa transação?
               </h1>
               <button
                 type='button'
@@ -122,7 +122,7 @@ export default function NewTransaction() {
               ></button>
             </div>
             <div className='modal-body'>
-              Valor: {priceFormat.format(value / 100)} | Nome: {username}
+              Valor a ser transferido {priceFormat.format(value / 100)}
             </div>
             <div className='modal-footer'>
               <button
