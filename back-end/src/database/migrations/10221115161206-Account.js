@@ -15,6 +15,10 @@ module.exports = {
           type: Sequelize.BIGINT,
           allowNull: false,
         },
+        pixKey: {
+          type: Sequelize.STRING,
+          allowNull: true,
+        },
       },
       {
         timestamps: false,

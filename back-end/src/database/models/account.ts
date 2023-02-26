@@ -1,4 +1,4 @@
-import {  BIGINT, INTEGER, Model } from 'sequelize';
+import {  BIGINT, INTEGER, Model, STRING } from 'sequelize';
 import db from '.';
 import User from './user';
 
@@ -17,6 +17,9 @@ Account.init({
   },
   balance: {
     type: BIGINT
+  },
+  pixKey: {
+    type: STRING
   },
 }, {
   sequelize: db,

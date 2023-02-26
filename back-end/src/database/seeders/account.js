@@ -4,6 +4,7 @@ module.exports = {
       {
         id: 999,
         balance: 1000000000,
+        pixKey: '123456789',
       },
       {
         id: 998,
