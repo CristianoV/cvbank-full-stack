@@ -6,9 +6,9 @@ import Input from './Input';
 export default function NewTransaction() {
   const [state, setState] = useAppContext() as any;
   const [error, setError] = useState('');
-  const [username, setUsername] = useState('');
+  const [pixKey, setPixKey] = useState('');
   const [value, setValue] = useState(0);
-  const [usuario, setUsuario] = useState({} as { price: string });
+  const [user, setUser] = useState({} as { price: string });
   const priceFormat = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
@@ -16,22 +16,22 @@ export default function NewTransaction() {
 
   useEffect(() => {
     const priceFormat = () => {
-      const { price } = usuario;
+      const { price } = user;
       if (price) {
         const priceNumber = Number(price.replace(/\D/g, ''));
         setValue(Number(priceNumber));
       }
     };
     priceFormat();
-  }, [usuario]);
+  }, [user]);
 
   const transaction = async (event: FormEvent) => {
     event.preventDefault();
     try {
       const token = localStorage.getItem('token');
       const response = await fetchFromApi.post(
-        '/transaction',
-        { username, value },
+        '/transaction/pix',
+        { pixKey, value },
         {
           headers: {
             Authorization: token,
@@ -42,8 +42,8 @@ export default function NewTransaction() {
       const { data } = response;
 
       if (!data.error) {
-        setUsername('');
-        setUsuario({ price: '' });
+        setPixKey('');
+        setUser({ price: '' });
         setValue(0);
         setState({ ...state, newTransaction: true, newBalance: true });
       }
@@ -56,12 +56,12 @@ export default function NewTransaction() {
 
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
-      setUsuario({
-        ...usuario,
+      setUser({
+        ...user,
         [e.currentTarget.name]: e.currentTarget.value,
       });
     },
-    [usuario]
+    [user]
   );
 
   return (
@@ -77,8 +77,8 @@ export default function NewTransaction() {
             type='input'
             placeholder='Adicione a Chave Pix'
             id='name'
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            value={pixKey}
+            onChange={(event) => setPixKey(event.target.value)}
           />
         </label>
         <Input
@@ -86,7 +86,7 @@ export default function NewTransaction() {
           mask='currency'
           // prefix='R$'
           placeholder='R$ 0,00'
-          value={usuario.price}
+          value={user.price}
           onChange={handleChange}
         />
         <button
@@ -122,7 +122,7 @@ export default function NewTransaction() {
               ></button>
             </div>
             <div className='modal-body'>
-              Valor: {priceFormat.format(value / 100)} | Nome: {username}
+              Valor: {priceFormat.format(value / 100)} | Nome: {pixKey}
             </div>
             <div className='modal-footer'>
               <button
