@@ -17,6 +17,13 @@ TransactionRoutes.post(
     transactionController.createTransaction(request, response)
 );
 
+TransactionRoutes.post(
+  '/pix',
+  validate.checkUserExists,
+  (request: Request, response: Response) =>
+    transactionController.createPixTransaction(request, response)
+);
+
 TransactionRoutes.get(
   '/all',
   validate.checkUserExists,
