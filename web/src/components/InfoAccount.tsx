@@ -57,9 +57,17 @@ export default function InfoAccount() {
               balance,
               user: { username },
               id,
+              pixKey,
             } = data;
 
-            setState({ ...state, id, username, balance, newBalance: false });
+            setState({
+              ...state,
+              id,
+              pixKey,
+              username,
+              balance,
+              newBalance: false,
+            });
           }
           return null;
         }
