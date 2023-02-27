@@ -133,7 +133,7 @@ export default function Login() {
             <button
               className={`bg-bank-primary rounded-lg w-80 h-11 text-white 
         ${
-          loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-bank-secondary'
+          loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-bank-secondary hover:opacity-95 transition-all duration-300 ease-in-out'
         }`}
               type='submit'
               disabled={loading}
@@ -165,7 +165,7 @@ export default function Login() {
               )}
             </button>
             <button
-              className='border-2 border-bank-primary rounded-lg w-80 h-11 text-bank-primary'
+              className='border-2 border-bank-primary rounded-lg w-80 h-11 text-bank-primary hover:underline'
               type='button'
               onClick={() => router.push('/register')}
             >

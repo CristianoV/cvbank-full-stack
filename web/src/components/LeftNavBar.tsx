@@ -11,7 +11,7 @@ import {
 const input = 'flex items-center gap-3 p-2 hover:text-blue-500';
 
 const inputSelect =
-  'flex items-center gap-3 bg-gray-200 p-2 hover:text-blue-500 rounded';
+  'flex items-center gap-3 bg-gray-200 p-2 hover:text-blue-500 rounded underline';
 
 function NavLink({
   href,
