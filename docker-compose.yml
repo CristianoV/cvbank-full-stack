@@ -26,12 +26,12 @@ services:
       db:
         condition: service_healthy
     environment:
-      - APP_PORT=3333
+      - PORT=3333
       - JWT_SECRET=jwt_secret
-      - DB_USER=postgres
-      - DB_PASS=1234
-      - DB_HOST=db
-      - DB_PORT=5432
+      - PGUSER=postgres
+      - PGPASSWORD=1234
+      - PGHOST=db
+      - PGPORT=5432
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3333"]
       timeout: 10s
