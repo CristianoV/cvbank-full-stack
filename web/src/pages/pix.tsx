@@ -4,6 +4,7 @@ import LeftNavBar from '../components/LeftNavBar';
 import PixComponent from '../components/PixComponent';
 import PixKeyComponent from '../components/PixKeyComponent';
 import CreatePixKeyComponent from '../components/CreatePixKeyComponent';
+import Balance from '../components/Balance';
 
 export default function Pix() {
   return (
@@ -17,8 +18,11 @@ export default function Pix() {
           <div className='flex mx-4 w-full items-start'>
             <LeftNavBar />
             <div className='w-full justify-center flex flex-col'>
+              <div className='flex'>
+              <Balance />
               <PixKeyComponent />
               <CreatePixKeyComponent />
+              </div>
               <PixComponent />
             </div>
           </div>

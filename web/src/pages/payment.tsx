@@ -2,6 +2,7 @@ import Head from 'next/head';
 import InfoAccount from '../components/InfoAccount';
 import LeftNavBar from '../components/LeftNavBar';
 import PaymentComponent from '../components/PaymentComponent';
+import Balance from '../components/Balance';
 
 export default function Payment() {
   return (
@@ -15,6 +16,9 @@ export default function Payment() {
           <div className='flex mx-4 w-full items-start'>
             <LeftNavBar />
             <div className='w-full justify-center flex flex-col'>
+              <div>
+                <Balance />
+              </div>
               <PaymentComponent />
             </div>
           </div>

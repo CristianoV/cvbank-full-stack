@@ -2,7 +2,7 @@ import InfoAccount from '../components/InfoAccount';
 import TransactionTable from '../components/TransactionTable';
 import LeftNavBar from '../components/LeftNavBar';
 import Head from 'next/head';
-import Balance from '../components/Balance';
+import BalanceComponent from '../components/BalanceComponent';
 import Second from '../components/Second';
 
 export default function Account() {
@@ -18,7 +18,7 @@ export default function Account() {
             <LeftNavBar />
             <div className='w-full justify-center flex flex-col'>
               <div className='flex justify-center'>
-                <Balance />
+                <BalanceComponent />
                 <Second />
               </div>
               <TransactionTable />
