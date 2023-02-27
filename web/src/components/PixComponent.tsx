@@ -9,6 +9,7 @@ export default function NewTransaction() {
   const [pixKey, setPixKey] = useState('');
   const [value, setValue] = useState(0);
   const [user, setUser] = useState({} as { price: string });
+  const [loading, setLoading] = useState(false);
   const priceFormat = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
@@ -29,6 +30,7 @@ export default function NewTransaction() {
     event.preventDefault();
     try {
       const token = localStorage.getItem('token');
+      setLoading(true);
       const response = await fetchFromApi.post(
         '/transaction/pix',
         { pixKey, value },
@@ -51,6 +53,8 @@ export default function NewTransaction() {
       setError(data.error);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -90,13 +94,39 @@ export default function NewTransaction() {
           onChange={handleChange}
         />
         <button
-          className='bg-bank-primary rounded-lg w-80 h-11 text-white
-                  disabled:opacity-50 disabled:cursor-not-allowed hover:bg-bank-secondary'
+          className={`bg-bank-primary rounded-lg min-w-fit w-80  h-11 text-white 
+        ${
+          loading
+            ? 'opacity-50 cursor-not-allowed'
+            : 'hover:bg-bank-secondary hover:opacity-95 transition-all duration-300 ease-in-out'
+        }`}
           type='button'
           data-bs-toggle='modal'
           data-bs-target='#staticBackdrop'
+          disabled={loading}
         >
-          Transferir
+          {loading ? (
+            <div className='flex items-center justify-center'>
+              <svg className='animate-spin h-5 w-5 mr-3' viewBox='0 0 24 24'>
+                <circle
+                  className='opacity-25'
+                  cx='12'
+                  cy='12'
+                  r='10'
+                  stroke='currentColor'
+                  strokeWidth='4'
+                />
+                <path
+                  className='opacity-75'
+                  fill='currentColor'
+                  d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm12 0a8 8 0 100-16v3a5 5 0 010 10v3z'
+                />
+              </svg>
+              <span>Carregando...</span>
+            </div>
+          ) : (
+            <span>Transferir</span>
+          )}
         </button>
       </form>
       <div
@@ -112,7 +142,7 @@ export default function NewTransaction() {
           <div className='modal-content'>
             <div className='modal-header'>
               <h1 className='modal-title fs-5' id='staticBackdropLabel'>
-                Você tem certeza que deseja adicionar essa transação?
+                Você tem certeza que deseja efetuar essa transação?
               </h1>
               <button
                 type='button'
