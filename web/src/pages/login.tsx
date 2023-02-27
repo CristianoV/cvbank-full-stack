@@ -75,7 +75,7 @@ export default function Login() {
             src={imageLogin}
             alt='Imagem de login'
             className='object-cover w-7/12 h-screen'
-            quality={50}
+            quality={25}
             placeholder='blur'
             blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0vQgAAWEBGHsgcxcAAAAASUVORK5CYII='
           />
