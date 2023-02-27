@@ -66,7 +66,7 @@ export default function Register() {
       </Head>
       <div className='flex flex-col bg-gray-100'>
         <header className='bg-bank-primary text-bank-quaternary'>
-          <div className='flex justify-center items-center h-16 w-full max-w-screen-xl'>
+        <div className='flex justify-center items-center h-16 w-full'>
             <Link href='/'>
               <h1 className='text-4xl font-bold transition duration-500 ease-in-out animate-pulse'>
                 NGBANCO<span className='text-violet-500'>.</span>
