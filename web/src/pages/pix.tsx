@@ -5,8 +5,10 @@ import PixComponent from '../components/PixComponent';
 import PixKeyComponent from '../components/PixKeyComponent';
 import CreatePixKeyComponent from '../components/CreatePixKeyComponent';
 import Balance from '../components/Balance';
+import { useAppContext } from '../context/AppContext';
 
 export default function Pix() {
+  const [state, setState] = useAppContext() as any;
   return (
     <>
       <Head>
@@ -19,9 +21,9 @@ export default function Pix() {
             <LeftNavBar />
             <div className='w-full justify-center flex flex-col'>
               <div className='flex'>
-              <Balance />
-              <PixKeyComponent />
-              <CreatePixKeyComponent />
+                {state.pixKey && <Balance />}
+                <PixKeyComponent />
+                <CreatePixKeyComponent />
               </div>
               <PixComponent />
             </div>
