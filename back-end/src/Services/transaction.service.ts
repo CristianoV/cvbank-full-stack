@@ -102,6 +102,7 @@ export default class TransactionService implements ITransactionService {
           attributes: ['username'],
         },
       ],
+      order: [['createdAt', 'DESC'], ['id', 'DESC']],
     });
 
     return transactions;
@@ -125,6 +126,7 @@ export default class TransactionService implements ITransactionService {
           attributes: ['username'],
         },
       ],
+      order: [['createdAt', 'DESC'], ['id', 'DESC']],
     });
 
     if (type === 'credit') {
