@@ -16,7 +16,7 @@ export default function Payment() {
           <div className='flex mx-4 w-full items-start'>
             <LeftNavBar />
             <div className='w-full justify-center flex flex-col'>
-              <div>
+              <div className='flex'>
                 <Balance />
               </div>
               <PaymentComponent />

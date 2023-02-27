@@ -41,7 +41,7 @@ export default function PaymentComponent() {
   // };
 
   return (
-    <div className='bg-white rounded p-1 m-2 w-full'>
+    <div className='bg-white rounded p-1 m-2'>
       <form
         onSubmit={transaction}
         className='flex flex-col justify-center items-center gap-4 w-5/6 m-auto p-3'
