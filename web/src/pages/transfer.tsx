@@ -8,7 +8,7 @@ export default function Account() {
   return (
     <>
       <Head>
-        <title>Banco NG</title>
+        <title>Transferencia | Banco NG</title>
       </Head>
       <main>
         <InfoAccount />

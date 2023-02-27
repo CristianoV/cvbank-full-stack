@@ -9,7 +9,7 @@ export default function Account() {
   return (
     <>
       <Head>
-        <title>Banco NG</title>
+        <title>Conta | Banco NG</title>
       </Head>
       <main>
         <InfoAccount />

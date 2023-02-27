@@ -62,7 +62,7 @@ export default function Register() {
   return (
     <>
       <Head>
-        <title>Banco NG</title>
+        <title>Registro | Banco NG</title>
       </Head>
       <div className='flex flex-col bg-gray-100'>
         <header className='bg-bank-primary text-bank-quaternary'>

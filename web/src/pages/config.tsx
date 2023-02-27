@@ -6,7 +6,7 @@ export default function Config() {
   return (
     <>
       <Head>
-        <title>Banco NG</title>
+        <title>Configurações | Banco NG</title>
       </Head>
       <main>
         <InfoAccount />

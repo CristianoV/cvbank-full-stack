@@ -10,7 +10,7 @@ export default function Pix() {
   return (
     <>
       <Head>
-        <title>Banco NG</title>
+        <title>Pix | Banco NG</title>
       </Head>
       <main>
         <InfoAccount />

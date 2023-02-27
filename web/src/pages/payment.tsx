@@ -8,7 +8,7 @@ export default function Payment() {
   return (
     <>
       <Head>
-        <title>Banco NG</title>
+        <title>Pagamento | Banco NG</title>
       </Head>
       <main>
         <InfoAccount />

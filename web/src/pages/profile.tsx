@@ -6,7 +6,7 @@ export default function Profile() {
   return (
     <>
       <Head>
-        <title>Banco NG</title>
+        <title>Perfil | Banco NG</title>
       </Head>
       <main>
         <InfoAccount />
