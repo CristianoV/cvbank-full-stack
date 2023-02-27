@@ -68,6 +68,8 @@ export default function NewTransaction() {
     [user]
   );
 
+  if (!state.pixKey) return null;
+
   return (
     <div className='bg-white rounded p-1 m-2'>
       <form
