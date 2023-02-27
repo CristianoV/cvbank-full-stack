@@ -48,7 +48,7 @@ export default function Balance() {
   if (state.pixKey) return null;
 
   return (
-    <div className='bg-white rounded p-3 m-2 text-2xl'>
+    <div className='bg-white rounded p-3 m-2 text-2xl w-full'>
       Você gostaria de criar uma chave pix?
       <div className='bg-gray-50 p-3 rounded'>
         <label htmlFor='Email' className='flex flex-col items-start'>
