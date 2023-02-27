@@ -44,12 +44,12 @@ export default function PaymentComponent() {
     <div className='bg-white rounded p-1 m-2'>
       <form
         onSubmit={transaction}
-        className='flex flex-col justify-center items-center gap-4 w-5/6 m-auto p-3'
+        className='flex flex-col justify-center items-center m-6 gap-4'
       >
-        <label htmlFor='name' className='flex flex-col w-3/5'>
+        <label htmlFor='name' className='flex flex-col'>
           Boleto
           <input
-            className='border border-[#001813] rounded-md p-1 h-11 shadow-md'
+            className='border border-[#001813] rounded-md p-1 w-80 h-11 shadow-md'
             type='number'
             placeholder='Numero do boleto'
             required
@@ -59,7 +59,7 @@ export default function PaymentComponent() {
           />
         </label>
         <button
-          className={`bg-bank-primary rounded-lg min-w-fit w-3/12 h-11 text-white 
+          className={`bg-bank-primary rounded-lg min-w-fit w-80  h-11 text-white 
         ${
           loading
             ? 'opacity-50 cursor-not-allowed'
