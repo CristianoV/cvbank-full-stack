@@ -64,7 +64,7 @@ export default function Register() {
       <Head>
         <title>Banco NG</title>
       </Head>
-      <div className='flex flex-col bg-gray-100 h-screen'>
+      <div className='flex flex-col bg-gray-100'>
         <header className='bg-bank-primary text-bank-quaternary'>
           <div className='flex justify-center items-center h-16 w-full max-w-screen-xl'>
             <Link href='/'>
