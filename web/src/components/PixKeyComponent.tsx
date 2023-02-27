@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export default function Balance() {
   const [state, setState] = useAppContext() as any;
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
 
   if (!state.pixKey) return null;
 

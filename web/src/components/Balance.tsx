@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 export default function Balance() {
   const [state, setState] = useAppContext() as any;
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
 
   const priceFormat = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
