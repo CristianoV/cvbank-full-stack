@@ -154,7 +154,7 @@ export default function NewTransaction() {
               ></button>
             </div>
             <div className='modal-body'>
-              Valor: {priceFormat.format(value / 100)} | Nome: {pixKey}
+              Valor a ser transferido {priceFormat.format(value / 100)}
             </div>
             <div className='modal-footer'>
               <button

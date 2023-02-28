@@ -150,7 +150,8 @@ export default function TransactionTable() {
           <thead>
             <tr className='bg-bank-primary text-white text-center'>
               <th>VALOR</th>
-              <th>Creditado</th>
+              <th>TIPO</th>
+              <th>CREDITADO</th>
               <th>DEBITADO</th>
               <th>DATA</th>
             </tr>
@@ -165,6 +166,7 @@ export default function TransactionTable() {
                     id,
                     creditedUser,
                     debitedUser,
+                    type,
                   }: ITransaction,
                   index: Key
                 ) => {
@@ -175,6 +177,7 @@ export default function TransactionTable() {
                       creditedUser={creditedUser}
                       debitedUser={debitedUser}
                       id={id}
+                      type={type}
                       key={index}
                     />
                   );
