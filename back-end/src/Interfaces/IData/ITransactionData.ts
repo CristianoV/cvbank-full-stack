@@ -10,6 +10,7 @@ export interface ITransactionData {
   creditedAccount: Account;
   debitedAccount: Account;
   value: number;
+  type: string;
 }
 
 export interface ITransactionPixData {
