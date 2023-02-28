@@ -15,11 +15,13 @@ export default class TransactionService implements ITransactionService {
     creditedAccount,
     debitedAccount,
     value,
+    type,
   }: ITransactionData) {
     const transaction = await Transaction.create({
       creditedAccountId: creditedAccount.id,
       debitedAccountId: debitedAccount.id,
       value,
+      type,
     });
 
     const newDebitedBalance = Number(debitedAccount.balance) - Number(value);
@@ -56,6 +58,7 @@ export default class TransactionService implements ITransactionService {
       creditedAccount,
       debitedAccount,
       value,
+      type: 'Transferencia',
     });
   }
 
@@ -86,6 +89,7 @@ export default class TransactionService implements ITransactionService {
       creditedAccount,
       debitedAccount,
       value,
+      type: 'Pix',
     });
   }
 
