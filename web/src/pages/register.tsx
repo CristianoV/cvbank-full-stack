@@ -66,7 +66,7 @@ export default function Register() {
       </Head>
       <div className='flex flex-col bg-gray-100'>
         <header className='bg-bank-primary text-bank-quaternary'>
-        <div className='flex justify-center items-center h-16 w-full'>
+          <div className='flex justify-center items-center h-16 w-full'>
             <Link href='/'>
               <h1 className='text-4xl font-bold transition duration-500 ease-in-out animate-pulse'>
                 NGBANCO<span className='text-violet-500'>.</span>
@@ -74,19 +74,19 @@ export default function Register() {
             </Link>
           </div>
         </header>
-        <div className='flex'>
+        <div className='flex flex-col h-screen mobile:flex-row'>
           <Image
             src={imageRegister}
             alt='Imagem de login'
-            className='object-cover w-7/12 h-screen'
+            className='object-cover h-32 mobile:w-7/12 mobile:h-screen'
             quality={25}
             placeholder='blur'
             blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0vQgAAWEBGHsgcxcAAAAASUVORK5CYII='
           />
           <form
             onSubmit={userRegister}
-            className='flex justify-center flex-col items-center gap-3 bg-[#E5E5E5]
-    p-5 m-auto mt-20 place-content-center font-roboto shadow-lg rounded-lg'
+            className='flex justify-center flex-col items-center gap-3 mobile:bg-[#E5E5E5]
+      m-2 p-3 place-content-center font-roboto shadow-lg rounded-lg mobile:w-5/12 mobile:mx-auto'
           >
             <h1 className='text-2xl font-bold text-bank-primary'>
               Crie sua conta
@@ -131,7 +131,9 @@ export default function Register() {
             <button
               className={`bg-bank-primary rounded-lg w-80 h-11 text-white 
         ${
-          loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-bank-secondary hover:opacity-95 transition-all duration-300 ease-in-out'
+          loading
+            ? 'opacity-50 cursor-not-allowed'
+            : 'hover:bg-bank-secondary hover:opacity-95 transition-all duration-300 ease-in-out'
         }`}
               type='submit'
               disabled={loading}

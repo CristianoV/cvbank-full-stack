@@ -70,20 +70,19 @@ export default function Login() {
             </Link>
           </div>
         </header>
-        <div className='flex'>
+        <div className='flex flex-col h-screen mobile:flex-row'>
           <Image
             src={imageLogin}
             alt='Imagem de login'
-            className='object-cover w-7/12 h-screen'
+            className='object-cover h-32 mobile:w-7/12 mobile:h-screen'
             quality={25}
             placeholder='blur'
             blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0vQgAAWEBGHsgcxcAAAAASUVORK5CYII='
           />
           <form
             onSubmit={userLogin}
-            className='flex justify-center flex-col items-center gap-3 bg-[#E5E5E5]
-      m-auto p-5 mt-20 place-content-center font-roboto shadow-lg rounded-lg'
-          >
+            className='flex justify-center flex-col items-center gap-3 mobile:bg-[#E5E5E5]
+      m-2 p-3 place-content-center font-roboto shadow-lg rounded-lg mobile:w-5/12 mobile:mx-auto'>
             <h1 className='text-2xl font-bold text-bank-primary'>
               Inicie sessão
             </h1>
@@ -133,7 +132,9 @@ export default function Login() {
             <button
               className={`bg-bank-primary rounded-lg w-80 h-11 text-white 
         ${
-          loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-bank-secondary hover:opacity-95 transition-all duration-300 ease-in-out'
+          loading
+            ? 'opacity-50 cursor-not-allowed'
+            : 'hover:bg-bank-secondary hover:opacity-95 transition-all duration-300 ease-in-out'
         }`}
               type='submit'
               disabled={loading}
