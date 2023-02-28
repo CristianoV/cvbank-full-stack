@@ -150,9 +150,9 @@ export default function TransactionTable() {
           <thead>
             <tr className='bg-bank-primary text-white text-center'>
               <th>VALOR</th>
-              <th>TIPO</th>
+              <th className='hidden mobile:block'>TIPO</th>
               <th>CREDITADO</th>
-              <th>DEBITADO</th>
+              <th className='hidden mobile:block'>DEBITADO</th>
               <th>DATA</th>
             </tr>
           </thead>

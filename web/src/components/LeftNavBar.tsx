@@ -32,8 +32,8 @@ function NavLink({
 
 export default function LeftNavBar() {
   return (
-    <div className='flex flex-col w-72 h-screen bg-white rounded p-1 m-2'>
-      <div className='flex flex-col h-full mt-4 m-10 text-2xl gap-4'>
+    <div className='flex flex-col bottom-0 mobile:w-72 mobile:h-screen bg-white rounded p-1 m-2 fixed mobile:relative'>
+      <div className='flex flex-wrap justify-center mobile:justify-start mobile:flex-col mobile:h-full mobile:mt-4 mobile:m-10 mobile:text-2xl mobile:gap-4 mobile:flex-wrap'>
         <NavLink href='/account'>
           <BiHomeAlt />
           Pagina inicial

@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './src/**/*.tsx',
-  ],
+  content: ['./src/**/*.tsx'],
   theme: {
     extend: {
       fontFamily: {
@@ -10,6 +8,9 @@ module.exports = {
       },
       backgroundImage: {
         app: "url('/effects.png')",
+      },
+      screens: {
+        mobile: '845px',
       },
       colors: {
         bank: {
@@ -25,11 +26,11 @@ module.exports = {
           // dark: '#000000',
         },
         ignite: {
-          500: '#129E57'
+          500: '#129E57',
         },
         yellow: {
           500: '#F7DD43',
-          700: '#E5CD3D'
+          700: '#E5CD3D',
         },
         gray: {
           100: '#E1E1E6',
@@ -52,4 +53,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};

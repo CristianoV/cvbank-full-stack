@@ -13,7 +13,7 @@ export default function Payment() {
       <main>
         <InfoAccount />
         <div className='flex max-w-screen-xl m-auto'>
-          <div className='flex mx-4 w-full items-start'>
+          <div className='mobile:mx-4 w-full items-start mobile:flex pb-36 mobile:pb-0'>
             <LeftNavBar />
             <div className='w-full justify-center flex flex-col'>
               <div className='flex'>
