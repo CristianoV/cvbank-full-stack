@@ -69,7 +69,7 @@ export default function Register() {
           <div className='flex justify-center items-center h-16 w-full'>
             <Link href='/'>
               <h1 className='text-4xl font-bold transition duration-500 ease-in-out animate-pulse'>
-                NGBANCO<span className='text-violet-500'>.</span>
+                CVBANK<span className='text-violet-500'>.</span>
               </h1>
             </Link>
           </div>
