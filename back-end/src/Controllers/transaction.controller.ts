@@ -53,4 +53,16 @@ export default class TransactionController implements ITransactionController {
 
     return res.status(202).json(transactions);
   }
+
+  public async paymentBoletoTransaction(req: Request, res: Response) {
+    const { authorization } = req.headers as { authorization: string };
+    const { boletoId } = req.body;
+
+    const boleto = await this.registerService.boletoTransaction({
+      authorization,
+      boletoId,
+    });
+
+    return res.status(202).json(boleto);
+  }
 }
