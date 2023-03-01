@@ -1,5 +1,6 @@
 import Transaction from '../database/models/transaction';
 import Account from '../database/models/account';
+import Boleto from '../database/models/boleto';
 import JwtSecret from '../utils/JwtService';
 import { Op } from 'sequelize';
 import {
@@ -31,6 +32,60 @@ export default class TransactionService implements ITransactionService {
       debitedAccount.update({ balance: newDebitedBalance }),
       creditedAccount.update({ balance: newCreditedBalance }),
     ]);
+
+    return transaction;
+  }
+
+  public async boletoTransaction({
+    authorization,
+    boletoId,
+  }: {
+    authorization: string;
+    boletoId: any;
+  }) {
+    const { id: accountId } = JwtSecret.verify(authorization) as { id: number };
+
+    const boleto = await Boleto.findOne({
+      where: {
+        boletoId,
+      },
+    });
+    if (!boleto) {
+      throw new Error('Boleto not found');
+    }
+
+    const creditedAccount = await Account.findByPk(boleto.accountId);
+
+    if (!creditedAccount) {
+      throw new Error('Credited account not found');
+    }
+
+    if (creditedAccount.id === accountId) {
+      throw new Error('You cannot pay your own boleto');
+    }
+
+    const debitedAccount = await Account.findByPk(accountId);
+
+    if (!debitedAccount) {
+      throw new Error('Debited account not found');
+    }
+
+    if (debitedAccount.balance < boleto.value) {
+      throw new Error('Insufficient funds');
+    }
+
+    if (boleto.status === 'Pago') {
+      throw new Error('Boleto already paid');
+    }
+
+    const transaction = await this.executeTransaction({
+      creditedAccount,
+      debitedAccount,
+      value: boleto.value,
+      type: 'Boleto',
+    });
+
+    await boleto.update({ status: 'Pago' });
 
     return transaction;
   }
@@ -106,7 +161,10 @@ export default class TransactionService implements ITransactionService {
           attributes: ['username'],
         },
       ],
-      order: [['createdAt', 'DESC'], ['id', 'DESC']],
+      order: [
+        ['createdAt', 'DESC'],
+        ['id', 'DESC'],
+      ],
     });
 
     return transactions;
@@ -130,7 +188,10 @@ export default class TransactionService implements ITransactionService {
           attributes: ['username'],
         },
       ],
-      order: [['createdAt', 'DESC'], ['id', 'DESC']],
+      order: [
+        ['createdAt', 'DESC'],
+        ['id', 'DESC'],
+      ],
     });
 
     if (type === 'credit') {
