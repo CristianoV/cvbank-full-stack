@@ -4,6 +4,7 @@ import Login from './Routes/Login.route';
 import Register from './Routes/Register.route';
 import Account from './Routes/Account.route';
 import Transaction from './Routes/Transaction.route';
+import Boleto from './Routes/Boleto.route';
 import NotFound from './Routes/NotFound';
 import cors = require('cors');
 import { Error } from 'sequelize';
@@ -24,6 +25,7 @@ class App {
     this.app.use('/register', Register);
     this.app.use('/account', Account);
     this.app.use('/transaction', Transaction);
+    this.app.use('/boleto', Boleto);
     this.app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
       if (err) {
         return res.status(400).json({ error: err.message });
