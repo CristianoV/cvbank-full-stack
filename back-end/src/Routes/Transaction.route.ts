@@ -42,6 +42,6 @@ TransactionRoutes.post(
   '/boleto',
   validate.checkUserExists,
   (request: Request, response: Response) =>
-    transactionController.paymentBoletoTransaction(request, response)
+    transactionController.createBoletoTransaction(request, response)
 );
 export default TransactionRoutes;
