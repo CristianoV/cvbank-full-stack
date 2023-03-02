@@ -4,10 +4,12 @@ import User from './user';
 
 class Boletos extends Model {
   public id!: number;
+  public boletoId!: string;
   public accountId!: number;
   public value!: number;
   public status!: string;
   public createdAt!: Date;
+  user: any;
 }
 
 Boletos.init(
