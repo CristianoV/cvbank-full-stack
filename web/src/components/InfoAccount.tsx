@@ -110,6 +110,14 @@ export default function InfoAccount() {
             <li onClick={() => handleShare(state.id)} className='dropdown-item'>
               Nº da conta: {state.id || '0000'}
             </li>
+            {state.pixKey && (
+              <li
+                onClick={() => handleShare(state.pixKey)}
+                className='dropdown-item'
+              >
+                Pix: {state.pixKey}
+              </li>
+            )}
             <li>
               <Link className='dropdown-item' href='/config'>
                 Configuração
