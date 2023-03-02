@@ -109,6 +109,10 @@ export default class TransactionService implements ITransactionService {
       throw new Error('Debited account not found');
     }
 
+    if (creditedAccount.id === debitedAccount.id) {
+      throw new Error('You cannot transfer to yourself');
+    }
+
     return this.executeTransaction({
       creditedAccount,
       debitedAccount,
