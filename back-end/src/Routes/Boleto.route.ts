@@ -22,4 +22,18 @@ BoletoRoutes.get(
     boletoController.getAllBoletos(request, response)
 );
 
+BoletoRoutes.get(
+  '/user',
+  validate.checkUserExists,
+  (request: Request, response: Response) =>
+    boletoController.getAllBoletosByUser(request, response)
+);
+
+BoletoRoutes.get(
+  '/:boletoId',
+  validate.checkUserExists,
+  (request: Request, response: Response) =>
+    boletoController.getBoletoById(request, response)
+);
+
 export default BoletoRoutes;
