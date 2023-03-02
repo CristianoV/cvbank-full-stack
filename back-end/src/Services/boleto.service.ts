@@ -1,5 +1,5 @@
 import Boleto from '../database/models/boleto';
-import Account from '../database/models/account';
+import User from '../database/models/user';
 import JwtSecret from '../utils/JwtService';
 import generateRandomEAN13 from '../utils/GenerateRandomEAN13';
 
@@ -32,5 +32,50 @@ export default class TransactionService {
     });
 
     return boletos;
+  }
+  public async getAllBoletosByUser(authorization: string) {
+    const { id } = JwtSecret.verify(authorization) as { id: number };
+
+    const boletos = await Boleto.findAll({
+      where: {
+        accountId: id,
+      },
+      order: [['id', 'DESC']],
+    });
+
+    return boletos;
+  }
+
+  public async getBoletoById(boletoId: string) {
+    const boleto = await Boleto.findOne({
+      where: {
+        boletoId,
+      },
+      include: [
+        {
+          model: User,
+          as: 'user',
+          attributes: ['username'],
+        },
+      ],
+    });
+
+    if (!boleto) {
+      throw new Error('Boleto não encontrado');
+    }
+
+    if (boleto.status === 'Pago') {
+      throw new Error('Boleto já foi pago');
+    }
+
+    const obj = {
+      id: boleto?.id,
+      boletoId: boleto?.boletoId,
+      accountId: boleto?.user.username,
+      value: boleto?.value,
+      status: boleto?.status,
+      createdAt: boleto?.createdAt,
+    };
+    return obj;
   }
 }
