@@ -23,4 +23,21 @@ export default class TransactionController {
 
     return res.status(200).json(boletos);
   }
+
+  public async getAllBoletosByUser(req: Request, res: Response) {
+    const { authorization } = req.headers as { authorization: string };
+    console.log(authorization);
+    
+    const boletos = await this.boletoService.getAllBoletosByUser(authorization);
+
+    return res.status(200).json(boletos);
+  }
+
+  public async getBoletoById(req: Request, res: Response) {
+    const { boletoId } = req.params;
+
+    const boleto = await this.boletoService.getBoletoById(boletoId);
+
+    return res.status(200).json(boleto);
+  }
 }
