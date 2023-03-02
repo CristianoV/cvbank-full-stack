@@ -21,10 +21,10 @@ export default function ProfileComponent() {
 
   return (
     <div className='bg-white rounded p-2 m-2 flex flex-col h-screen'>
-      <div className='flex'>
+      <div className='flex gap-1'>
         <Link href='/profile'>
           <img
-            src='https://avatars.githubusercontent.com/u/30246605?s=400&u=4d4e67e884bd4177238074346b15ccae53ebf245&v=4'
+            src='https://www.ecp.org.br/wp-content/uploads/2017/12/default-avatar-1.png'
             alt=''
             className='rounded-full w-14 h-14 object-cover'
           />
