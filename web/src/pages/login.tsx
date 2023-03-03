@@ -70,19 +70,19 @@ export default function Login() {
             </Link>
           </div>
         </header>
-        <div className='flex flex-col h-screen mobile:flex-row'>
+        <div className='flex flex-col h-screen desktop:flex-row'>
           <Image
             src={imageLogin}
             alt='Imagem de login'
-            className='object-cover h-32 mobile:w-7/12 mobile:h-screen'
+            className='object-cover h-32 desktop:w-7/12 desktop:h-screen'
             quality={25}
             placeholder='blur'
             blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0vQgAAWEBGHsgcxcAAAAASUVORK5CYII='
           />
           <form
             onSubmit={userLogin}
-            className='flex justify-center flex-col items-center gap-3 mobile:bg-[#E5E5E5]
-      m-2 p-3 place-content-center font-roboto shadow-lg rounded-lg mobile:w-5/12 mobile:mx-auto'>
+            className='flex justify-center flex-col items-center gap-3 desktop:bg-[#E5E5E5]
+      m-2 p-3 place-content-center font-roboto shadow-lg rounded-lg desktop:w-5/12 desktop:mx-auto'>
             <h1 className='text-2xl font-bold text-bank-primary'>
               Inicie sessão
             </h1>

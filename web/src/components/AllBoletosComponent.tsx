@@ -32,7 +32,7 @@ export default function AllBoletosComponent() {
   return (
     <div className='bg-white p-3 mx-2 rounded'>
       <h1 className='text-2xl text-center m-3'>Seus Boletos</h1>
-      <div className='flex flex-wrap gap-1 justify-center mobile:justify-start'>
+      <div className='flex flex-wrap gap-1 justify-center desktop:justify-start'>
         {boletos.length ? (
           boletos.map((boleto) => {
             return (
