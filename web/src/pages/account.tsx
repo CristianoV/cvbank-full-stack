@@ -1,13 +1,45 @@
-import InfoAcount from '../components/InfoAcount';
-import NewTransaction from '../components/NewTransaction';
+import InfoAccount from '../components/InfoAccount';
 import TransactionTable from '../components/TransactionTable';
+import LeftNavBar from '../components/LeftNavBar';
+import Head from 'next/head';
+import BalanceComponent from '../components/BalanceComponent';
+import Second from '../components/Second';
 
 export default function Account() {
   return (
-    <div>
-      <InfoAcount />
-      <NewTransaction />
+    <>
+      <Head>
+        <title>Conta | Banco NG</title>
+      </Head>
+      <main>
+        <InfoAccount />
+        <div className='flex max-w-screen-xl m-auto'>
+          <div className='mobile:mx-4 w-full items-start mobile:flex pb-36 mobile:pb-0'>
+            <LeftNavBar />
+            <div className='w-full justify-center flex flex-col'>
+              <div className='flex justify-center flex-col mobile:flex-row'>
+                <BalanceComponent />
+                <Second />
+              </div>
+              <TransactionTable />
+            </div>
+          </div>
+        </div>
+      </main>
+    </>
+  );
+}
+
+{
+  /* <div>
+  <InfoAccount />
+  <div className='flex max-w-screen-xl mx-auto overflow-x-auto'>
+    <LeftNavBar />
+    <div className='flex flex-wrap w-screen'>
+      <Balance />
+      <Second />
       <TransactionTable />
     </div>
-  );
+  </div>
+</div>; */
 }

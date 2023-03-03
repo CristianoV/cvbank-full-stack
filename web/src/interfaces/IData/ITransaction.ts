@@ -6,4 +6,5 @@ export interface ITransaction {
   debitedUser: IUser;
   id: number;
   value: number;
+  type: string;
 }

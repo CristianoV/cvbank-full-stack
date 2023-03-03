@@ -23,4 +23,23 @@ export default class AccountService implements IAccountService {
 
     return user;
   }
+
+  public async createPixKey(authorization: string, pixKey: string) {
+    const { id } = JwtSecret.verify(authorization);
+
+    const user = await this.model.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    user.pixKey = pixKey;
+    await user.save();
+
+    return user;
+  }
 }

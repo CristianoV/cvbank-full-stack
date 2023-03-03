@@ -32,6 +32,10 @@ module.exports = {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
+        type: {
+          type: Sequelize.ENUM('Pix', 'Transferencia', 'Boleto'),
+          allowNull: false,
+        },
         createdAt: {
           type: Sequelize.DATEONLY,
         },

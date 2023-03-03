@@ -12,9 +12,16 @@ const validate = new Validate();
 TransactionRoutes.post(
   '/',
   validate.checkUserExists,
-  validate.ckeckTransaction,
+  validate.checkTransaction,
   (request: Request, response: Response) =>
     transactionController.createTransaction(request, response)
+);
+
+TransactionRoutes.post(
+  '/pix',
+  validate.checkUserExists,
+  (request: Request, response: Response) =>
+    transactionController.createPixTransaction(request, response)
 );
 
 TransactionRoutes.get(
@@ -31,4 +38,10 @@ TransactionRoutes.post(
     transactionController.getTransactionsByFilter(request, response)
 );
 
+TransactionRoutes.post(
+  '/boleto',
+  validate.checkUserExists,
+  (request: Request, response: Response) =>
+    transactionController.createBoletoTransaction(request, response)
+);
 export default TransactionRoutes;

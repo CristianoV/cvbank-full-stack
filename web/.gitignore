@@ -8,8 +8,8 @@
 # production
 /build
 
-# local env files
-.env*.local
+# env file
+.env
 
 # vercel
 .vercel

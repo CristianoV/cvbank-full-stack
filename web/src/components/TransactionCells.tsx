@@ -10,6 +10,7 @@ function TransactionCells({
   creditedUser,
   debitedUser,
   id,
+  type,
 }: ITransaction) {
   const [state, setState] = useAppContext() as unknown as [
     IContext,
@@ -35,8 +36,9 @@ function TransactionCells({
           state.username === debitedUser.username ? '-' : '+'
         } ${priceFormat.format(value / 100)}`}
       </td>
+      <td className='text-center hidden mobile:block'>{type}</td>
       <td className='text-center'>{creditedUser.username}</td>
-      <td className='text-center'>{debitedUser.username}</td>
+      <td className='text-center hidden mobile:block'>{debitedUser.username}</td>
       <td className='text-center'>{date}</td>
     </tr>
   );

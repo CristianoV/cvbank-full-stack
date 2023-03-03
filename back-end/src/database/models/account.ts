@@ -1,10 +1,11 @@
-import {  BIGINT, INTEGER, Model } from 'sequelize';
+import {  BIGINT, INTEGER, Model, STRING } from 'sequelize';
 import db from '.';
 import User from './user';
 
 class Account extends Model {
   public id!: number;
   public balance!: number;
+  public pixKey: string;
 }
 
 Account.init({
@@ -17,6 +18,9 @@ Account.init({
   },
   balance: {
     type: BIGINT
+  },
+  pixKey: {
+    type: STRING
   },
 }, {
   sequelize: db,
