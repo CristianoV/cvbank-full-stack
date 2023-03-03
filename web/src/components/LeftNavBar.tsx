@@ -11,7 +11,7 @@ import {
 const input = 'flex items-center gap-3 p-2 hover:text-blue-500';
 
 const inputSelect =
-  'flex items-center gap-3 bg-gray-200 p-2 hover:text-blue-500 rounded underline';
+  'flex items-center gap-3 mobile:bg-gray-200 p-2 hover:text-blue-500 rounded underline text-blue-500 mobile:text-black';
 
 function NavLink({
   href,
@@ -32,7 +32,7 @@ function NavLink({
 
 export default function LeftNavBar() {
   return (
-    <div className='flex flex-col bottom-0 mobile:w-72 mobile:h-screen bg-white rounded p-1 m-2 fixed mobile:relative'>
+    <div className='flex flex-col bottom-0 mobile:w-72 mobile:h-screen mobile:bg-white rounded p-1 mobile:m-2 fixed mobile:relative bg-gray-100'>
       <div className='flex flex-wrap justify-center mobile:justify-start mobile:flex-col mobile:h-full mobile:mt-4 mobile:m-10 mobile:text-2xl mobile:gap-4 mobile:flex-wrap'>
         <NavLink href='/account'>
           <BiHomeAlt />
