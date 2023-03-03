@@ -33,10 +33,9 @@ export default function PaymentComponent() {
           Authorization: token,
         },
       });
-      console.log(response.data);
       setTransactionData(response.data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -67,7 +66,7 @@ export default function PaymentComponent() {
 
       setError(data.error);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       router.push('/');
     } finally {
       setLoading(false);

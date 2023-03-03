@@ -41,7 +41,7 @@ export default function Balance() {
 
       // setError(data.error);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

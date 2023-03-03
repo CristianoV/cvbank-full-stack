@@ -27,7 +27,6 @@ export default class BoletoController  implements IBoletoController{
 
   public async getAllBoletosByUser(req: Request, res: Response) {
     const { authorization } = req.headers as { authorization: string };
-    console.log(authorization);
     
     const boletos = await this.boletoService.getAllBoletosByUser(authorization);
 
