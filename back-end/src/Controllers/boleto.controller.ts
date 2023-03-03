@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
+import { IBoletoController } from '../Interfaces/IController/IBoletoController';
 import BoletoService from '../Services/boleto.service';
 
-export default class TransactionController {
+export default class BoletoController  implements IBoletoController{
   constructor(private boletoService: BoletoService) {}
 
   public async createNewBoleto(req: Request, res: Response) {
