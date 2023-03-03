@@ -38,12 +38,12 @@ function TransactionCells({
       </td>
       <td className='text-center hidden mobile:block'>{type}</td>
       <td className='text-center'>{creditedUser.username}</td>
-      <td className='text-center hidden mobile:block'>{debitedUser.username}</td>
-      <td className='text-center'>{date}</td>
+      <td className='text-center'>{debitedUser.username}</td>
+      <td className='text-center hidden mobile:block'>{date}</td>
     </tr>
   );
 }
-
+  
 TransactionCells.propTypes = {
   id: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired,
