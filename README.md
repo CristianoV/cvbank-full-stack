@@ -1,5 +1,5 @@
 <h1 align="center">
-Projeto NG-Cash FullStack
+Projeto CVBANK FullStack
 </h1>
 
 ## :books: Contexto
