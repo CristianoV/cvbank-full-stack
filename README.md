@@ -12,7 +12,7 @@ Projeto desenvolvido para desafio técnico da NG.Cash, cujo objetivo era criar u
 
 Tudo isso com algumas seguranças como token JWT e Bcrypt para a encriptação de dados sigilosos
 
-Como bônus, foram desenvolvidos alguns testes de integração para algumas rotas do back, esse projeto foi muito divertido de codar e pretendo continuar atualizando, adicionando mais testes para as camadas do back e iniciar os do front.
+Como bônus, foram desenvolvidos alguns testes de integração para algumas rotas do back, esse projeto foi muito divertido de codar e pretendo continuar atualizando, adicionando mais testes para as camadas do back.
 
 
 - [README Back-end](https://github.com/CristianoV/ng-cash-full-stack/tree/master/back-end#projeto-ng-cash-back-end)
