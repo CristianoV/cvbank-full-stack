@@ -17,6 +17,7 @@ export default function TransactionTable() {
   const [date, setDate] = useState('');
   const [filter, setFilter] = useState('');
   const router = useRouter();
+  const [transaction, setTransaction] = useState<ITransaction[]>([]);
 
   useEffect(() => {
     const transactions = async () => {
@@ -29,6 +30,7 @@ export default function TransactionTable() {
         });
         const { data } = response;
         setState({ ...state, transactions: data, newTransaction: false });
+        setTransaction(data);
         setLoading(false);
         return null;
       }
@@ -53,9 +55,8 @@ export default function TransactionTable() {
       const token = localStorage.getItem('token');
       setLoading(true);
       if (token) {
-        const response = await fetchFromApi.post(
-          '/transaction/filter',
-          { date, type: filter },
+        const response = await fetchFromApi.get(
+          `/transaction/filter?date=${date}&type=${filter}`,
           {
             headers: {
               Authorization: token,
@@ -64,7 +65,7 @@ export default function TransactionTable() {
         );
         const { data } = response;
 
-        setState({ ...state, transactions: data });
+        setTransaction(data);
         setLoading(false);
         return null;
       }
@@ -76,12 +77,15 @@ export default function TransactionTable() {
   };
 
   return (
-    <div className='flex flex-col bg-white rounded p-1 m-2 h-72'>
+    <div className='flex flex-col bg-white rounded p-1 m-2 h-screen desktop:h-72'>
       <form
         onSubmit={filteredTransactions}
-        className='flex items-end m-6 gap-4 justify-center'
+        className='flex items-center desktop:items-end m-6 gap-4 justify-center flex-col desktop:flex-row'
       >
-        <label htmlFor='data' className='flex flex-col items-center w-3/12'>
+        <label
+          htmlFor='data'
+          className='flex flex-col items-center  w-5/6  desktop:w-3/12'
+        >
           Selecione o dia
           <input
             className='border border-[#001813] w-full rounded-md p-1 h-11 shadow-md cursor-pointer'
@@ -95,7 +99,10 @@ export default function TransactionTable() {
             }}
           />
         </label>
-        <label htmlFor='' className='flex flex-col items-center w-3/12 '>
+        <label
+          htmlFor=''
+          className='flex flex-col items-center w-5/6 desktop:w-3/12 '
+        >
           Tipo de Transação
           <select
             name=''
@@ -112,7 +119,7 @@ export default function TransactionTable() {
           </select>
         </label>
         <button
-          className={`bg-bank-primary rounded-lg  w-3/12 h-11 text-white 
+          className={`bg-bank-primary rounded-lg  w-5/6   desktop:w-3/12 h-11 text-white 
         ${
           loading
             ? 'opacity-50 cursor-not-allowed'
@@ -150,15 +157,15 @@ export default function TransactionTable() {
           <thead>
             <tr className='bg-bank-primary text-white text-center'>
               <th>VALOR</th>
-              <th className='hidden mobile:block'>TIPO</th>
+              <th className='hidden desktop:block'>TIPO</th>
               <th>CREDITADO</th>
-              <th className='hidden mobile:block'>DEBITADO</th>
-              <th>DATA</th>
+              <th>DEBITADO</th>
+              <th className='hidden desktop:block'>DATA</th>
             </tr>
           </thead>
           <tbody>
             {!loading &&
-              state.transactions.map(
+              transaction.map(
                 (
                   {
                     createdAt,

@@ -1,5 +1,5 @@
 <h1 align="center">
-Projeto NG-Cash Back-End
+Projeto CVBANK Back-End
 </h1>
 
 ## :man_technologist: Tecnologias, bibliotecas e arquiteturas usadas

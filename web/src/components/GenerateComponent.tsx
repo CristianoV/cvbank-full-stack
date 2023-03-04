@@ -55,8 +55,6 @@ export default function NewTransaction() {
       const { data } = response;
 
       if (!data.error) {
-        console.log(data);
-
         setUser({ price: '' });
         setValue(0);
         setState({ ...state, newTransaction: true, newBalance: true });
@@ -65,7 +63,7 @@ export default function NewTransaction() {
 
       setError(data.error);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }

@@ -20,7 +20,7 @@ export default function Balance() {
     try {
       const token = localStorage.getItem('token');
       const response = await fetchFromApi.post(
-        '/account',
+        '/account/pix',
         { pixKey: key },
         {
           headers: {
@@ -41,7 +41,7 @@ export default function Balance() {
 
       // setError(data.error);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

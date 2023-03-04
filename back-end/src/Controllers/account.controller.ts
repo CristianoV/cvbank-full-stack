@@ -17,8 +17,8 @@ export default class AccountController implements IAccountController {
     const { authorization } = req.headers as { authorization: string };
     const { pixKey } = req.body as { pixKey: string };
 
-    const user = await this.registerService.createPixKey(authorization, pixKey);
+    await this.registerService.createPixKey(authorization, pixKey);
 
-    return res.status(202).json(user);
+    return res.status(202).json({ message: 'Pix key created' });
   }
 }

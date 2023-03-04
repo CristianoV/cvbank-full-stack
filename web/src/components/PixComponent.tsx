@@ -52,7 +52,7 @@ export default function NewTransaction() {
 
       setError(data.error);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }

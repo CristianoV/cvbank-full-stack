@@ -16,13 +16,6 @@ BoletoRoutes.post(
 );
 
 BoletoRoutes.get(
-  '/',
-  validate.checkUserExists,
-  (request: Request, response: Response) =>
-    boletoController.getAllBoletos(request, response)
-);
-
-BoletoRoutes.get(
   '/user',
   validate.checkUserExists,
   (request: Request, response: Response) =>

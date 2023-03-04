@@ -12,6 +12,13 @@ export interface ITransactionService {
     debitedAccount,
     value,
   }: ITransactionData): Promise<Transaction>;
+  boletoTransaction({
+    authorization,
+    boletoId,
+  }: {
+    authorization: string;
+    boletoId: string;
+  }): Promise<Transaction>;
   transferTransaction({
     creditedAccountId,
     authorization,

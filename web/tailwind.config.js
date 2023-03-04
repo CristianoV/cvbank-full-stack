@@ -10,7 +10,7 @@ module.exports = {
         app: "url('/effects.png')",
       },
       screens: {
-        mobile: '845px',
+        desktop: '845px',
       },
       colors: {
         bank: {

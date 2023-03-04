@@ -1,5 +1,5 @@
 <h1 align="center">
-Projeto NG-Cash Front-End
+Projeto CVBANK Front-End
 </h1>
 
 <div align="center"><img width="600" src="./NG.BANK.png"></div>

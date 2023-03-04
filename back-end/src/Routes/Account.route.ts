@@ -14,7 +14,7 @@ RegisterRoutes.get('/', (request: Request, response: Response) =>
 );
 
 RegisterRoutes.post(
-  '/',
+  '/pix',
   validate.checkUserExists,
   (request: Request, response: Response) =>
     registerController.CreatePixKey(request, response)

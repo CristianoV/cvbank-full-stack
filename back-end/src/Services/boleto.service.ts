@@ -2,13 +2,10 @@ import Boleto from '../database/models/boleto';
 import User from '../database/models/user';
 import JwtSecret from '../utils/JwtService';
 import generateRandomEAN13 from '../utils/GenerateRandomEAN13';
+import { IBoletoService } from '../Interfaces/IService/IBoletoService';
+import { IBoletoData } from '../Interfaces/IData/IBoletoData';
 
-interface IBoletoData {
-  authorization: string;
-  value: number;
-}
-
-export default class TransactionService {
+export default class TransactionService implements IBoletoService {
   public async newBoleto({ authorization, value }: IBoletoData) {
     const { id } = JwtSecret.verify(authorization) as { id: number };
 
@@ -22,17 +19,6 @@ export default class TransactionService {
     return boleto;
   }
 
-  public async getAllBoletos(authorization: string) {
-    const { id } = JwtSecret.verify(authorization) as { id: number };
-
-    const boletos = await Boleto.findAll({
-      where: {
-        accountId: id,
-      },
-    });
-
-    return boletos;
-  }
   public async getAllBoletosByUser(authorization: string) {
     const { id } = JwtSecret.verify(authorization) as { id: number };
 

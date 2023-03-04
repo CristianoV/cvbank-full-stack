@@ -1,0 +1,720 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "CVBANK API",
+    "description": "API do projeto CVBANK, desenvolvido por Cristiano Vieira",
+    "termsOfService": "http://localhost:3333/terms",
+    "contact": {
+      "email": "cristianoviieira@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/login": {
+      "post": {
+        "summary": "Acesso a aplicação",
+        "description": "Essa rota é responsável por acessar a aplicação",
+        "tags": ["Login"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginAndRegister"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Login realizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Token"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao realizar o login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "summary": "Registro na aplicação",
+        "description": "Essa rota é responsável por fazer o cadastro na aplicação",
+        "tags": ["Register"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginAndRegister"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Cadastro realizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Token"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao realizar o cadastro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account": {
+      "get": {
+        "summary": "Acesso a informações da conta",
+        "description": "Essa rota é responsável por acessar as informações da conta",
+        "tags": ["Account"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "202": {
+            "description": "Conta acessada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao acessar a conta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/pix": {
+      "post": {
+        "summary": "Criação de chave PIX",
+        "description": "Essa rota é responsável por criar uma chave PIX",
+        "tags": ["Account"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePix"
+              }
+            }
+          }
+        },
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "202": {
+            "description": "Conta acessada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao acessar a conta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transaction/all": {
+      "get": {
+        "summary": "Busca de todas as transferências",
+        "description": "Essa rota é responsável por fazer buscas de todas as transferências de um usuário",
+        "tags": ["Transaction"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "202": {
+            "description": "Conta acessada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTransaction"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao acessar a conta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transaction/filter": {
+      "get": {
+        "summary": "Busca de transferências com filtros",
+        "description": "Essa rota é responsável por fazer buscas de transferências de um usuário",
+        "tags": ["Transaction"],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Data da transferência",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Tipo da transferência",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "202": {
+            "description": "Conta acessada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTransaction"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao acessar a conta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transaction": {
+      "post": {
+        "summary": "Transferência de valores",
+        "description": "Essa rota é responsável por fazer transferências de valores",
+        "tags": ["Transaction"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/newTransaction"
+              }
+            }
+          }
+        },
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "202": {
+            "description": "Conta acessada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao acessar a conta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transaction/pix": {
+      "post": {
+        "summary": "Transferência de valores por PIX",
+        "description": "Essa rota é responsável por fazer transferências de valores por PIX",
+        "tags": ["Transaction"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/newTransactionPix"
+              }
+            }
+          }
+        },
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "202": {
+            "description": "Conta acessada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao acessar a conta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transaction/boleto": {
+      "post": {
+        "summary": "Transferência de valores por boleto",
+        "description": "Essa rota é responsável por fazer transferências de valores por boleto",
+        "tags": ["Transaction"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/newTransactionBoleto"
+              }
+            }
+          }
+        },
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "202": {
+            "description": "Conta acessada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao acessar a conta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/boleto/user": {
+      "get": {
+        "summary": "Acesso a todos os boletos do usuário",
+        "description": "Essa rota é responsável por acessar todos os boletos do usuário",
+        "tags": ["Boleto"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "202": {
+            "description": "Boletos acessados com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBoleto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao pesquisar os boletos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/boleto/{boletoId}": {
+      "get": {
+        "summary": "Acesso a um boleto",
+        "description": "Essa rota é responsável por acessar um boleto",
+        "tags": ["Boleto"],
+        "parameters": [
+          {
+            "name": "boletoId",
+            "in": "path",
+            "description": "Data da transferência",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "202": {
+            "description": "Boletos acessados com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Boleto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao pesquisar os boletos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/boleto": {
+      "post": {
+        "summary": "Criação de boleto",
+        "description": "Essa rota é responsável por criar um boleto",
+        "tags": ["Boleto"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBoleto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Boleto criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Boleto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao criar o boleto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LoginAndRegister": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "Nome de usuário, deve conter no mínimo 3 caracteres"
+          },
+          "password": {
+            "type": "string",
+            "description": "Senha do usuário, deve conter no mínimo 8 caracteres, 1 letra maiúscula, 1 letra minúscula e 1 número"
+          }
+        }
+      },
+      "Token": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Token JWT"
+          }
+        }
+      },
+      "AccountInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Token JWT"
+          },
+          "balance": {
+            "type": "string",
+            "description": "Token JWT"
+          },
+          "pixKey": {
+            "type": "string",
+            "description": "Token JWT"
+          },
+          "user": {
+            "type": "object",
+            "description": "Token JWT",
+            "properties": {
+              "username": {
+                "type": "string",
+                "description": "Token JWT"
+              }
+            }
+          }
+        }
+      },
+      "Message": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Mensagem de sucesso"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Mensagem de erro"
+          }
+        }
+      },
+      "CreatePix": {
+        "type": "object",
+        "properties": {
+          "pixKey": {
+            "type": "string",
+            "description": "Chave PIX"
+          }
+        }
+      },
+      "GetTransaction": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "description": "ID da transação"
+            },
+            "debitedAccountId": {
+              "type": "number",
+              "description": "ID da conta debitada"
+            },
+            "creditedAccountId": {
+              "type": "number",
+              "description": "ID da conta creditada"
+            },
+            "value": {
+              "type": "number",
+              "description": "valor da transação"
+            },
+            "type": {
+              "type": "string",
+              "description": "tipo da transação"
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "debitedUser": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "description": "nome do usuário"
+                }
+              }
+            },
+            "creditedUser": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "description": "nome do usuário"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Boleto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID da transação"
+          },
+          "boletoId": {
+            "type": "string",
+            "description": "ID do boleto"
+          },
+          "accountId": {
+            "type": "number",
+            "description": "ID da conta creditada"
+          },
+          "value": {
+            "type": "number",
+            "description": "valor da transação"
+          },
+          "status": {
+            "type": "string",
+            "description": "status do boleto"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "data da criação"
+          }
+        }
+      },
+      "GetBoleto": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "ID da transação"
+            },
+            "boletoId": {
+              "type": "string",
+              "description": "ID do boleto"
+            },
+            "accountId": {
+              "type": "number",
+              "description": "ID da conta creditada"
+            },
+            "value": {
+              "type": "number",
+              "description": "valor da transação"
+            },
+            "status": {
+              "type": "string",
+              "description": "status do boleto"
+            },
+            "createdAt": {
+              "type": "string",
+              "description": "data da criação"
+            }
+          }
+        }
+      },
+      "FilteredTransactions": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "ID da conta a ser creditada"
+          },
+          "type": {
+            "type": "string",
+            "description": "valor a ser transferido"
+          }
+        }
+      },
+      "newTransaction": {
+        "type": "object",
+        "properties": {
+          "creditedAccountId": {
+            "type": "string",
+            "description": "ID da conta a ser creditada"
+          },
+          "value": {
+            "type": "number",
+            "description": "valor a ser transferido"
+          }
+        }
+      },
+      "newTransactionPix": {
+        "type": "object",
+        "properties": {
+          "pixKey": {
+            "type": "string",
+            "description": "Chave PIX"
+          },
+          "value": {
+            "type": "number",
+            "description": "valor a ser transferido"
+          }
+        }
+      },
+      "newTransactionBoleto": {
+        "type": "object",
+        "properties": {
+          "boletoId": {
+            "type": "string",
+            "description": "ID da conta a ser creditada"
+          }
+        }
+      },
+      "CreateBoleto": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "description": "Chave PIX"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  }
+}

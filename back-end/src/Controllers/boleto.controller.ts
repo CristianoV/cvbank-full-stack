@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
+import { IBoletoController } from '../Interfaces/IController/IBoletoController';
 import BoletoService from '../Services/boleto.service';
 
-export default class TransactionController {
+export default class BoletoController  implements IBoletoController{
   constructor(private boletoService: BoletoService) {}
 
   public async createNewBoleto(req: Request, res: Response) {
@@ -16,17 +17,8 @@ export default class TransactionController {
     return res.status(202).json(newBoleto);
   }
 
-  public async getAllBoletos(req: Request, res: Response) {
-    const { authorization } = req.headers as { authorization: string };
-
-    const boletos = await this.boletoService.getAllBoletos(authorization);
-
-    return res.status(200).json(boletos);
-  }
-
   public async getAllBoletosByUser(req: Request, res: Response) {
     const { authorization } = req.headers as { authorization: string };
-    console.log(authorization);
     
     const boletos = await this.boletoService.getAllBoletosByUser(authorization);
 
