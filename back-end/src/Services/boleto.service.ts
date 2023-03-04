@@ -19,17 +19,6 @@ export default class TransactionService implements IBoletoService {
     return boleto;
   }
 
-  public async getAllBoletos(authorization: string) {
-    const { id } = JwtSecret.verify(authorization) as { id: number };
-
-    const boletos = await Boleto.findAll({
-      where: {
-        accountId: id,
-      },
-    });
-
-    return boletos;
-  }
   public async getAllBoletosByUser(authorization: string) {
     const { id } = JwtSecret.verify(authorization) as { id: number };
 
