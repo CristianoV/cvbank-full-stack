@@ -55,9 +55,8 @@ export default function TransactionTable() {
       const token = localStorage.getItem('token');
       setLoading(true);
       if (token) {
-        const response = await fetchFromApi.post(
-          '/transaction/filter',
-          { date, type: filter },
+        const response = await fetchFromApi.get(
+          `/transaction/filter?date=${date}&type=${filter}`,
           {
             headers: {
               Authorization: token,
@@ -83,7 +82,10 @@ export default function TransactionTable() {
         onSubmit={filteredTransactions}
         className='flex items-center desktop:items-end m-6 gap-4 justify-center flex-col desktop:flex-row'
       >
-        <label htmlFor='data' className='flex flex-col items-center  w-5/6  desktop:w-3/12'>
+        <label
+          htmlFor='data'
+          className='flex flex-col items-center  w-5/6  desktop:w-3/12'
+        >
           Selecione o dia
           <input
             className='border border-[#001813] w-full rounded-md p-1 h-11 shadow-md cursor-pointer'
@@ -97,7 +99,10 @@ export default function TransactionTable() {
             }}
           />
         </label>
-        <label htmlFor='' className='flex flex-col items-center w-5/6 desktop:w-3/12 '>
+        <label
+          htmlFor=''
+          className='flex flex-col items-center w-5/6 desktop:w-3/12 '
+        >
           Tipo de Transação
           <select
             name=''
