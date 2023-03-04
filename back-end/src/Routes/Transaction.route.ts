@@ -31,7 +31,7 @@ TransactionRoutes.get(
     transactionController.getTransactions(request, response)
 );
 
-TransactionRoutes.post(
+TransactionRoutes.get(
   '/filter',
   validate.checkUserExists,
   (request: Request, response: Response) =>

@@ -55,7 +55,7 @@ export default class TransactionController implements ITransactionController {
 
   public async getTransactionsByFilter(req: Request, res: Response) {
     const { authorization } = req.headers as { authorization: string };
-    const { date, type } = req.body;
+    const { date, type } = req.query as { date: string; type: string };
 
     const transactions = await this.registerService.getTransactionsByFilter({
       authorization,
