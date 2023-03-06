@@ -30,7 +30,9 @@ cd cvbank-full-stack
 npm run test-back
 ```
 
-## Portas
+## Portas pré configuradas
+
+podem ser alteradas dentro do docker-compose ou .env
  - Front-End: `3000`
  - Back-End: `3333`
  - Postgress: `5432`
