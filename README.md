@@ -8,8 +8,8 @@ Você pode acessar a partir deste link:
 
 https://cristianobank.vercel.app/
 
-- [README Back-end](https://github.com/CristianoV/ng-cash-full-stack/tree/master/back-end#projeto-ng-cash-back-end)
-- [README Front-end](https://github.com/CristianoV/ng-cash-full-stack/tree/master/web#projeto-ng-cash-front-end)
+- [README Back-end](https://github.com/CristianoV/cvbank-full-stack/blob/master/back-end/README.md)
+- [README Front-end](https://github.com/CristianoV/cvbank-full-stack/blob/master/web/README.md)
 
 # Instruções da aplicação
 ### Instalar dependências
