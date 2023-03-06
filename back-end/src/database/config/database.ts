@@ -1,5 +1,6 @@
-import 'dotenv/config';
 import { Options } from 'sequelize';
+import dotenv = require('dotenv');
+dotenv.config();
 
 const config: Options = {
   username: process.env.PGUSER || 'postgres',
