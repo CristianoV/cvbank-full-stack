@@ -2,6 +2,12 @@
 Projeto CVBANK Back-End
 </h1>
 
+## :books: Contexto
+Este projeto foi desenvolvido para fornecer aos usuários a capacidade de simular operações bancárias básicas, como transferências de dinheiro, pagamentos de boletos e transferências via Pix. Nossa API de Banco Digital foi projetada com segurança e escalabilidade em mente, para garantir que os usuários possam realizar suas transações de maneira fácil e segura.
+
+A documentação da API está disponível em https://cvbank-full-stack-production.up.railway.app/api-docs/, e inclui detalhes sobre cada endpoint disponível e como usar a API. Para usar nossa API, você precisará de uma chave de API válida, que pode ser obtida se cadastrando ou fazendo login no nosso aplicativo.
+
+
 ## :man_technologist: Tecnologias, bibliotecas e arquiteturas usadas
   * __Express__
   * __Postgress__
@@ -13,6 +19,7 @@ Projeto CVBANK Back-End
   * __Mocha__
   * __chai__
   * __Sinon__
+  * __Swagger__
   
 # Instruções da aplicação
 
@@ -36,7 +43,7 @@ cd back-end
 npm test
 ```
 
-
+<!-- 
 ## Documentação da API
 
 #### Login no banco
@@ -110,3 +117,4 @@ npm test
 | Header   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `authorization`      | `string` | **Obrigatório**. token JWT disponibilizado ao fazer login |
+ -->
