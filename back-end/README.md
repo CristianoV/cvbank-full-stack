@@ -16,6 +16,13 @@ Projeto CVBANK Back-End
   
 # Instruções da aplicação
 
+### Caso você não tenha Postgress, pode usar apenas o docker do banco
+```
+cd back-end
+npm i
+npm run docker
+```
+
 ### Iniciar Projeto sem Docker
 ```
 cd back-end
