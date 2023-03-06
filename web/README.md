@@ -2,7 +2,10 @@
 Projeto CVBANK Front-End
 </h1>
 
-<div align="center"><img width="600" src="./NG.BANK.png"></div>
+<div align="center">
+  <img src="./Desktop.png" width="500px" />
+  <img src="./Mobile.png" width="120px" />
+ </div>
 
 ## :man_technologist: Tecnologias, bibliotecas e arquiteturas usadas
   * __React__
