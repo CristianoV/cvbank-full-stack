@@ -36,18 +36,9 @@ export default function TransactionTable() {
       }
       router.push('/login');
     };
-    if (state.newTransaction === true) {
       transactions();
-    }
-  }, [router, state, setState]);
+  }, [router, setState, state]);
 
-  useEffect(() => {
-    return () => {
-      if (state.newTransaction === false) {
-        setState({ ...state, newTransaction: true });
-      }
-    };
-  }, []);
 
   const filteredTransactions = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
