@@ -8,11 +8,6 @@ import { IContext } from '../interfaces/IData/IContext';
 import { ITransaction } from '../interfaces/IData/ITransaction';
 
 export default function TransactionTable() {
-  const [state, setState] = useAppContext() as unknown as [
-    IContext,
-    (state: IContext) => void
-  ];
-
   const [loading, setLoading] = useState(true);
   const [date, setDate] = useState('');
   const [filter, setFilter] = useState('');
@@ -29,7 +24,6 @@ export default function TransactionTable() {
           },
         });
         const { data } = response;
-        setState({ ...state, transactions: data, newTransaction: false });
         setTransaction(data);
         setLoading(false);
         return null;
@@ -37,7 +31,7 @@ export default function TransactionTable() {
       router.push('/login');
     };
       transactions();
-  }, [router, setState, state]);
+  }, [router]);
 
 
   const filteredTransactions = async (e: { preventDefault: () => void }) => {
