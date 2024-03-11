@@ -1,8 +1,8 @@
-import { Options } from 'sequelize';
+import { Sequelize } from 'sequelize';
 import dotenv = require('dotenv');
 dotenv.config();
 
-const config: Options = {
+const sequelize = new Sequelize({
   username: process.env.PGUSER || 'postgres',
   password: process.env.PGPASSWORD || '1234',
   database: process.env.PGDATABASE || 'database_development',
@@ -13,6 +13,17 @@ const config: Options = {
     timezone: 'Z',
   },
   logging: false,
+});
+
+async function syncDatabase() {
+  try {
+    await sequelize.sync({ force: false });
+    console.log('Synchronized successfully.');
+  } catch (error) {
+    console.error('Error synchronizing database:', error);
+  }
 }
 
-module.exports = config;
+syncDatabase();
+
+export default sequelize;
